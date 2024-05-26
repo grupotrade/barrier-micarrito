@@ -1,0 +1,121 @@
+<template>
+    <v-container fluid class="px-0">
+        <v-skeleton-loader class="mx-auto" type="card" :loading="loading">
+            <v-row dense v-if="home">
+                <v-col cols="12" :lg="columns" class="mb-2" v-for="item in productsHome" :key="item.name">
+                    <ProductsProductCard :product="item" :category="getCategoryName(item.category)"
+                        @viewDetails="navigateProduct(item)" :showAdd="true" />
+                </v-col>
+            </v-row>
+            <v-row dense v-if="!home">
+                <v-col cols="12" :lg="columns" class="mb-2" v-for="item in products" :key="item.id">
+                    <ProductsProductCard :product="item" :category="getCategoryName(item.category)"
+                        @viewDetails="navigateProduct(item)" :showAdd="true" />
+                </v-col>
+            </v-row>
+        </v-skeleton-loader>
+        <ProductsViewProductDialog v-model="viewProductDialog" :product="productSelected" v-if="productSelected != null"
+            @viewProduct="viewProduct" />
+    </v-container>
+</template>
+
+<script>
+import {
+    mapGetters
+} from 'vuex'
+export default {
+    name: 'products-list',
+    props: {
+        category: {
+            type: String
+        },
+        home: {
+            type: Boolean,
+            default: false
+        },
+        columns: {
+            type: String,
+            default: '3'
+        }
+    },
+    data() {
+        return {
+            productSelected: null,
+            loading: false,
+            viewProductDialog: false,
+            productSelected: null
+        }
+    },
+    computed: {
+        ...mapGetters({
+            products: "products/getProducts",
+            productsHome: "products/getHomeProducts",
+            categories: "categories/getProductCategories",
+        }),
+        user() {
+            return this.$store.state.authUser;
+        }
+    },
+    mounted() {
+        this.$store.dispatch('categories/fetchAllProductCategories');
+        if (this.home) {
+            this.fetchHomeProducts()
+        }
+        else if (this.category) {
+            this.fetchProductsByCategory(this.category)
+        }
+        else {
+            this.fetchNonHomeProducts()
+        }
+
+    },
+    methods: {
+        async fetchProductsByCategory(id) {
+            try {
+                this.setLoading(true);
+                await this.$store.dispatch('products/fetchProductsByCategory', id);
+            } catch (error) {
+                console.error("Error fetching products:", error);
+            } finally {
+                this.setLoading(false);
+            }
+        },
+        async fetchHomeProducts() {
+            try {
+                await this.$store.dispatch('products/fetchHomeProducts');
+            } catch (error) {
+                console.error("Error fetching products:", error);
+            } finally {
+                this.setLoading(false);
+            }
+        },
+        async fetchNonHomeProducts() {
+            try {
+                await this.$store.dispatch('products/fetchNonHomeProducts');
+            } catch (error) {
+                console.error("Error fetching products:", error);
+            } finally {
+                this.setLoading(false);
+            }
+        },
+        setLoading(value) {
+            this.loading = value;
+        },
+        getCategoryName(categoryId) {
+            const category = this.categories.find(c => c.id === categoryId);
+            return category ? category.name : '';
+        },
+        viewProduct(product) {
+            this.viewProductDialog = true
+            this.productSelected = product
+        },
+        navigateProduct(product) {
+            this.$router.push('/product/' + product.id)
+        },
+        closeProductDialog() {
+            this.productDialog = false
+            this.productSelected = {}
+        }
+    }
+}
+</script>
