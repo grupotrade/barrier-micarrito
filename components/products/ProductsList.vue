@@ -110,7 +110,8 @@ export default {
             this.productSelected = product
         },
         navigateProduct(product) {
-            this.$router.push('/product/' + product.id)
+            const productName = product.name.replace(/\s+/g, '-').toLowerCase();
+            this.$router.push(`/product/${productName}_${product.id}`);
         },
         closeProductDialog() {
             this.productDialog = false

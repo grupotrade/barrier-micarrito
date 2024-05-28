@@ -71,6 +71,7 @@ export default {
         return {
             validUser: false,
             showPass: false,
+            processing: false,
             user: {
                 name: '',
                 lastname: '',
@@ -113,7 +114,6 @@ export default {
             }
             this.$store.dispatch('users/createUser', payload)
                 .then(result => {
-                    this.show = false
                     this.$toasted.success(result, {
                             duration: 1500
                         })

@@ -4,7 +4,7 @@
             <v-row>
                 <v-col cols="12" md="6">
                     <v-carousel hide-delimiters :height="carouselHeight" v-model="imageGallery" :continuous="true"
-                        :show-arrows="false">
+                        :show-arrows="$vuetify.breakpoint.xs">
                         <v-carousel-item class="mx-auto" v-if="product.imagePrincipal">
                             <img :src="product.imagePrincipal" style="max-width: 100%" />
                         </v-carousel-item>
@@ -70,10 +70,6 @@ export default {
         }
     },
     methods: {
-        viewProduct(product) {
-            this.tab = 0
-            this.$emit('viewProduct', product)
-        },
         addProduct() {
             this.$store.dispatch('cart/addToCart', { product: this.product, quantity: this.quantity, category: this.category });
         },

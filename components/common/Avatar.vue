@@ -40,7 +40,7 @@ export default {
             return src.length > 1
         },
         noAvatar(alt) {
-            if(alt.indexOf(' ') >= 0) {
+            if(alt && alt.indexOf(' ') >= 0) {
                 let full_name = alt.split(' ')
                 let no_avatar = (full_name[0].slice(0,1) + full_name[1].slice(0,1)).toUpperCase()
                 return no_avatar

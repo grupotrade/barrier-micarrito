@@ -39,8 +39,15 @@ export default {
     },    
     methods: {
         async getProduct() {
+            const nameWithId = this.$route.params.id;
+      const [productName, productId] = nameWithId.split('_');
+
+      if (!productId) {
+        console.log("Formato de URL incorrecto.");
+        return;
+      }
             let ref = this.$fire.firestore.collection('products')
-            ref.doc(this.$route.params.id).get().then((doc) => {
+            ref.doc(productId).get().then((doc) => {
                 if (doc.exists) {
                     this.product = doc.data()
 
