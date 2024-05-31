@@ -4,9 +4,9 @@
         <article v-if="post">
             <header class="header-post">
                 <v-container class="container-header-post">
-                    <a href="/blog" class="primary--text">
+                    <a href="/blog" class="white--text">
                         SIM / Blog /</a>
-                    <a :href="'/category/' + post.type.id" v-if="post.type" class="primary--text">
+                    <a :href="'/category/' + post.type.id" v-if="post.type" class="white--text">
                         {{ post.type.name }}
                     </a>
                     <h1 class="py-4 white--text">{{ post.title }}</h1>
@@ -16,7 +16,7 @@
                 <v-container>
                     <v-row>
                         <v-col cols="12" lg="9">
-                            <v-img :src="$config.storage + 'posts%2F' + post.img + '?alt=media'" contain
+                            <v-img :src="$config.storage + 'posts%2F' + post.img + '?alt=media'" height="350px" class="mb-6" contain
                                 v-if="post.img && post.img != ''"></v-img>
                             <div class="py-3" v-html="post.content"></div>
 
@@ -83,7 +83,12 @@ export default {
     },
     methods: {
         async getPost() {
-            let postId = this.$route.params.id
+            const nameWithId = this.$route.params.id;
+            const [postName, postId] = nameWithId.split('_');
+            if (!postId) {
+                console.log("Formato de URL incorrecto.");
+                return;
+            }
             this.$store.dispatch('posts/getPostbyId', postId)
                 .then(() => {
                     this.getRelatedPosts()
@@ -118,7 +123,9 @@ export default {
                 })
         },
         navigatePost(post) {
-            this.$router.push('/post/' + post.id)
+            const postName = post.title.replace(/\s+/g, '-').toLowerCase();
+            const encodedPostName = encodeURIComponent(postName);
+            this.$router.push(`/post/${encodedPostName}_${post.id}`);
         }
     },
 

@@ -14,11 +14,12 @@ export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     titleTemplate: '%s',
-    title: 'SIM',
+    title: 'SIM - Gift Box - Regalos empresariales originales y exclusivos.',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
+      {  name: 'title', content: 'SIM - Gift Box - Regalos empresariales originales y exclusivos.'},
+      { hid: 'description', name: 'description', content: 'Regalá Gift Box con propósito. Gift Card. Tarjeta de pre-compra. ¡No dejes para mañana lo que podés regalar hoy!' },
       { name: 'format-detection', content: 'telephone=no' }
     ],
     link: [

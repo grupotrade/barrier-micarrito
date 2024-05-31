@@ -88,8 +88,11 @@ export default {
             }
         },
         navigatePost(post) {
-            this.$router.push('/post/' + post.id)
-        },
-    }
-};
+            const postName = post.title.replace(/\s+/g, '-').toLowerCase();
+            const encodedPostName = encodeURIComponent(postName);
+            this.$router.push(`/post/${encodedPostName}_${post.id}`);
+        }
+    },
+
+}
 </script>

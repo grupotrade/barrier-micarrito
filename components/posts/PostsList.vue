@@ -1,7 +1,7 @@
 <template>
-    <v-container  fluid class="px-0" v-if="posts">
+    <v-container fluid class="px-0" v-if="posts">
         <v-row dense>
-            <v-col v-for="post in posts.slice(0,showPosts)" :key="post.id" cols="12" md="4">
+            <v-col v-for="post in posts.slice(0, showPosts)" :key="post.id" cols="12" md="4">
                 <PostsPostCard :post="post" @navigate="navigatePost(post)" :showCategory="showCategory" />
             </v-col>
         </v-row>
@@ -18,11 +18,11 @@ export default {
         category: {
             type: String
         },
-        showCategory:  {
+        showCategory: {
             type: Boolean,
             default: false
         },
-        showPosts:  {
+        showPosts: {
             type: Number,
             default: 3
         },
@@ -35,20 +35,22 @@ export default {
     mounted() {
         if (this.category) {
             this.$store.dispatch('posts/fetchPostsByPostType', this.category)
-            .then((res) => {
-                this.posts = res
-            })
+                .then((res) => {
+                    this.posts = res
+                })
         } else {
             this.$store.dispatch('posts/fetchPosts', this.category)
-            .then((res) => {
-                this.posts = res
-            })
+                .then((res) => {
+                    this.posts = res
+                })
         }
     },
     methods: {
         navigatePost(post) {
-            this.$router.push('/post/' + post.id)
-        },
+            const postName = post.title.replace(/\s+/g, '-').toLowerCase();
+            const encodedPostName = encodeURIComponent(postName);
+            this.$router.push(`/post/${encodedPostName}_${post.id}`);
+        }
     }
 
 };

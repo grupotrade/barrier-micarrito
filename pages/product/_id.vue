@@ -36,16 +36,16 @@ export default {
     mounted() {
         this.getProduct()
         this.fetchCategories()
-    },    
+    },
     methods: {
         async getProduct() {
             const nameWithId = this.$route.params.id;
-      const [productName, productId] = nameWithId.split('_');
+            const [productName, productId] = nameWithId.split('_');
 
-      if (!productId) {
-        console.log("Formato de URL incorrecto.");
-        return;
-      }
+            if (!productId) {
+                console.log("Formato de URL incorrecto.");
+                return;
+            }
             let ref = this.$fire.firestore.collection('products')
             ref.doc(productId).get().then((doc) => {
                 if (doc.exists) {

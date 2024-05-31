@@ -1,17 +1,17 @@
 <template>
-<v-container class="pt-lg-16 px-lg-16">
-    <v-row>
-        <v-col cols="12">
-            <h3>{{ getCategoryName(category)}}</h3>
-            <posts-list :category="category" />
-        </v-col>
-    </v-row>
+    <v-container class="pt-lg-16 px-lg-16">
+        <v-row>
+            <v-col cols="12">
+                <h3>{{ getCategoryName(category) }}</h3>
+                <posts-list :category="category" />
+            </v-col>
+        </v-row>
 
-    <!-- <h3 class="mt-10 mb-6" v-if="posts">Más publicaciones</h3> -->
-</v-container>
+        <!-- <h3 class="mt-10 mb-6" v-if="posts">Más publicaciones</h3> -->
+    </v-container>
 </template>
 
-<script> 
+<script>
 import {
     mapGetters
 } from 'vuex'
@@ -25,7 +25,7 @@ export default {
             categories: "posts/getPostTypes",
         }),
         category() {
-            return  this.$route.params.id
+            return this.$route.params.id
         }
     },
     mounted() {
@@ -38,7 +38,9 @@ export default {
             return category ? category.name : '';
         },
         navigatePost(post) {
-            this.$router.push('/post/' + post.id)
+            const postName = post.title.replace(/\s+/g, '-').toLowerCase();
+            const encodedPostName = encodeURIComponent(postName);
+            this.$router.push(`/post/${encodedPostName}_${post.id}`);
         }
     },
 
