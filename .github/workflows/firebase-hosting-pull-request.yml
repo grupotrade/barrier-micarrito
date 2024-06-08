@@ -20,4 +20,4 @@ jobs:
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_MI_CARRITO_APP }}'
-          projectId: mi-carrito-app
+          projectId: sim-catalogo
