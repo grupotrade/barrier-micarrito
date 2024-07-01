@@ -92,11 +92,33 @@ export const actions = {
                 .add(payload)
                 .then(() => {
                     resolve()
+                    this.$fire.firestore
+                    .collection('mails')
+                    .add({
+                        to: payload.email,
+                        message: {
+                            subject: 'Newsletter SIM GIFTBOX - Suscripción confirmada',
+                            html: '<h4>¡Gracias por unirte!</h4><p>En unos minutos recibirás un nuevo correo con el enlace del descargable.</p><p>Si tienes cualquier duda o podemos ayudarte con tus regalos, no dudes en escribirnos a hola@sim-giftbox.com o llamarnos al +54 9 11 2611-7588</p><p>Hasta pronto!</p><p>El equipo de SIM GIFT BOX</p>'
+                          }
+                      })
+                    .then(() => {
+                        resolve()
+                        this.$fire.firestore
+                    .collection('mails')
+                    .add({
+                        to: 'hola@sim-giftbox.com',
+                        message: {
+                            subject: 'Nuevo Usuario Registrado al Newsletter SIM',
+                            html: 'Un nuevo usuario se ha registrado al newsletter. <br>El usuario '+payload.email+' espera que le envíes un archivo descargable'
+                          }
+                      })
+                    })
                 })
                 .catch((error) => {
                     console.log(error);
                 });
         })
+        
     }
 }
 
