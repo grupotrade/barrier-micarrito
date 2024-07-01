@@ -4,7 +4,7 @@
             <v-col cols="12" lg="12">
                 <v-row dense no-gutters justify="end" align="center">
                     <v-col cols="12" lg="6" class="pr-8">
-                        <div class=" ml-lg-10">
+                        <div class="ml-6 ml-lg-10 ">
                         <h2 class="white--text my-5">
                             Descarga nuestro <br>E-BOOK
                         </h2>
