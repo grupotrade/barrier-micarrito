@@ -39,7 +39,7 @@
         <v-divider class="mb-3"></v-divider>
         <v-row>
             <v-col class="text-center">
-                <p class="px-8 px-lg-3">SIM Gift Box @‌2024 todos los derechos reservados - Designed by <a href="https://www.trade-design.com.ar/" target="_blak">Trade Design.</a></p>
+                <p class="px-8 px-lg-3">SIM Gift Box @‌2024 todos los derechos reservados - Diseño y Desarrollo: <a href="https://www.trade-design.com.ar/" target="_blak">Trade Design.</a></p>
             </v-col>
         </v-row>
     </v-container>
