@@ -22,6 +22,7 @@ export const actions = {
         let ref = this.$fire.firestore.collection('banners').where('deletedAt', '==', null).where('category.position', '==', payload).orderBy("name", "asc")
             ref.get().then(function (querySnapshot) {
                 const result = []
+                console.log(result)
                 querySnapshot.forEach(function (doc) {
                     let data
                     data = doc.data()
