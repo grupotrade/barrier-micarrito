@@ -4,7 +4,7 @@
             <v-carousel v-if="banners.length > 1" hide-delimiters :height="carouselHeight" cycle :interval="5000"
                 continuous @change="handleCarouselChange">
                 <v-carousel-item v-for="banner in banners" :key="banner.name">
-                    <v-card flat tile   @click="banner.url && goToUrl(banner)">
+                    <v-card flat tile   @click="goToUrl(banner)" :class="{ 'no-clickable-card': !banners[0]?.url }" :ripple="banners[0]?.url">
                         <img :src="getImageSrc(banner)" style="max-width: 100%" @load="setCarouselHeight"  />
 
                     </v-card>
@@ -13,13 +13,15 @@
                     </v-sheet>
                 </v-carousel-item>
             </v-carousel>
-            <v-img :src="getImageSrc(banners[0])" v-else cover contain></v-img>
+            <v-card flat tile @click="goToUrl(banners[0])" v-else :class="{ 'no-clickable-card': !banners[0]?.url }" :ripple="banners[0]?.url">
+            <v-img :src="getImageSrc(banners[0])" cover contain ></v-img>
+            </v-card>
         </v-card>
         <v-card flat tile v-if="$vuetify.breakpoint.xs">
             <v-carousel hide-delimiters :height="carouselHeight" cycle :interval="5000" v-if="banners.length > 1"
                 continuous>
                 <v-carousel-item v-for="banner in banners" :key="banner.name" >
-                    <v-card flat tile   @click="banner.url && goToUrl(banner)">
+                    <v-card flat tile   @click="goToUrl(banner)" >
                     <img :src="getImageMobileSrc(banner)" style="max-width: 100%" @load="setCarouselHeight" />
                     </v-card>
                     <v-sheet v-if="imageLoading" class="d-flex justify-center align-center" :height="carouselHeight">
@@ -27,7 +29,7 @@
                     </v-sheet>
                 </v-carousel-item>
             </v-carousel>
-            <v-card flat tile @click="banners[0].url && goToUrl(banners[0])" v-else>
+            <v-card flat tile @click="goToUrl(banners[0])" v-else>
             <v-img :src="getImageMobileSrc(banners[0])" cover contain ></v-img>
             </v-card>
         </v-card>
@@ -82,9 +84,15 @@ export default {
         },
         goToUrl(banner) {
             if (banner.url) {
-                window.location.href = banner.url;
+                window.open(banner.url, '_blank');
             }
         }
     }
 }
 </script>
+
+<style>
+.no-clickable-card {
+  cursor: default !important;
+}
+</style>
