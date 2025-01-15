@@ -14,12 +14,12 @@ export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     titleTemplate: '%s',
-    title: 'SIM - Gift Box - Regalos empresariales originales y exclusivos.',
+    title: 'Barrier Clima - El confort que tu hogar necesita.',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      {  name: 'title', content: 'SIM - Gift Box - Regalos empresariales originales y exclusivos.'},
-      { hid: 'description', name: 'description', content: 'Regalá Gift Box con propósito. Gift Card. Tarjeta de pre-compra. ¡No dejes para mañana lo que podés regalar hoy!' },
+      {  name: 'title', content: 'Barrier Clima - El confort que tu hogar necesita'},
+      { hid: 'description', name: 'description', content: 'Barrier Clima. El confort que tu hogar necesita. Descubrí el placer de vivir en un ambiente climatizado.' },
       { name: 'format-detection', content: 'telephone=no' }
     ],
     link: [
