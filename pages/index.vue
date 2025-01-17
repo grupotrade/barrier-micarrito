@@ -62,7 +62,30 @@
                 </v-col>
             </v-row>
         </v-container>
-
+        <v-container fluid class="contact-info primary text-center py-8 my-6">
+            <v-row justify="center white--text">
+                <v-col cols="12" md="2">
+                    <v-icon color="white" class="mb-2">mdi-map-marker</v-icon>
+                    <p class="mb-0">O'Higgins 910</p>
+                </v-col>
+                <v-col cols="12" md="2">
+                    <v-icon color="white" class="mb-2">mdi-clock</v-icon>
+                    <p class="mb-0">Lu-Vi 10am a 13pm - 14pm a 18.30pm</p>
+                </v-col>
+                <v-col cols="12" md="2">
+                    <v-icon color="white" class="mb-2">mdi-phone</v-icon>
+                    <p class="mb-0">(+54 11) 4662-6140</p>
+                </v-col>
+                <v-col cols="12" md="2">
+                    <v-icon color="white" class="mb-2">mdi-email</v-icon>
+                    <p class="mb-0">info@barrierclima.com.ar</p>
+                </v-col>
+                <v-col cols="12" md="2">
+                    <v-icon color="white" class="mb-2">mdi-phone</v-icon>
+                    <p class="mb-0">+54 911 3782-7119</p>
+                </v-col>
+            </v-row>
+        </v-container>
         <v-container fluid id="clientes" class="grey lighten-3 text-center px-0 py-6">
             <h3 class="pb-12">Trabajamos con marcas líderes en el Mercado.</h3>
             <client-only>
@@ -71,6 +94,7 @@
             </client-only>
         </v-container>
 
+        
 
     </v-sheet>
 </template>
