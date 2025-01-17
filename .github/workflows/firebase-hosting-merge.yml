@@ -19,4 +19,4 @@ jobs:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_SIM_CATALOGO }}'
           channelId: live
-          projectId: sim-catalogo
+          projectId: barrier-micarrito

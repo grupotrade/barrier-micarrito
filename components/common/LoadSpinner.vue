@@ -3,7 +3,7 @@
     <div v-if="show" class="splash-screen">
       <div class="spinner-wrapper">
         <div class="spinner">
-          <v-img src="/img/gift.svg"></v-img>
+          <v-img src="/img/icon.png"></v-img>
         </div>
       </div>
     </div>
