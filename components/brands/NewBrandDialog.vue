@@ -83,7 +83,7 @@ export default {
             }
         },
         ...mapGetters({
-            categories: "brands/fetchBrandsCategories"
+            categories: "brands/getBrandsCategories"
         })
     },
     watch: {
