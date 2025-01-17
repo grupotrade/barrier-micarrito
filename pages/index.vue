@@ -61,12 +61,6 @@
                     </v-row>
                 </v-col>
             </v-row>
-            <v-col cols="12" md="2" v-for="step in steps" :key="step.number">
-                <div
-                    :style="{ backgroundColor: getColor(step.number), borderRadius: '50%', width: '50px', height: '50px', margin: '0 auto' }">
-                </div>
-                <p>{{ step.number }}. {{ step.text }}</p>
-            </v-col>
         </v-container>
 
         <v-container fluid id="clientes" class="grey lighten-3 text-center px-0 py-6">
