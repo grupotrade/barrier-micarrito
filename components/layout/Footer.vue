@@ -1,45 +1,32 @@
 <template>
-    <v-footer :class="(!$vuetify.breakpoint.xs) ? 'py-6' : 'py-6'" class="secondary d-block" dark>
+    <v-footer :class="(!$vuetify.breakpoint.xs) ? 'py-6' : 'py-6'" class="primary_text d-block" dark>
         <v-container class="container-inner pa-0">
         <v-row dense class="justify-center  flex-column flex-lg-row">
             <v-col cols="12" lg="4">
                 <CommonLogoH class="mb-lg-4" dark />
-                <p>Sim es todo lo que está bien</p>
-                <v-btn href="https://www.instagram.com/sim_giftbox/" target="_blank" icon color="primary">
-                    <v-icon>mdi-instagram</v-icon>
-                </v-btn>
-                <v-btn href="https://www.linkedin.com/company/" target="_blank" icon color="primary">
-                    <v-icon>mdi-linkedin</v-icon>
-                </v-btn>
-                <v-btn href="https://www.facebook.com/" target="_blank" icon color="primary">
-                    <v-icon>mdi-facebook</v-icon>
-                </v-btn>
+                <p class="pr-12">Somos una empresa de servicios, dedicada a la instalación y  mantenimiento de artefactos de calefacción con la más alta calidad  tecnológica.</p>
             </v-col>
-            <v-col cols="12" lg="4">
-                <h6 class="mb-2">Enlaces rápidos</h6>
-                <v-list class="transparent" dense>
-
-                    <v-list-item href="/#categorias">Colecciones</v-list-item>
-                    <v-list-item href="/#porque">Sobre nosotros</v-list-item>
-                    <v-list-item href="/#pasos">Cómo funciona</v-list-item>
-                    <v-list-item href="/#testimonios">Testimonios</v-list-item>
-                    <v-list-item href="/blog">Blog</v-list-item>
-                </v-list>
+            <v-col cols="12" lg="4" class="pl-8">
+                <h5 class="mb-4">Contacto</h5>
+                <p>O'Higgins 910 Hurlingham, Buenos Aires, Argentina</p>
+                <p> <a href="phone:+549114662614" class="white--text">+54 9 11 4662-614</a></p>
+                <p> <a href="mailto:hola@sim-giftbox.com" class="white--text">info@barrierclima.com.ar</a></p>
+              <p>Lu-Vi 10am a 13pm - 14pm a 18.30pm</p>
             </v-col>
             <v-col cols="12" lg="4" class="text-md-right">
-                <h6 class="mb-2">Contactanos</h6>
-                <p>Buenos Aires, Argentina</p>
-                <p> <a href="phone:+5491126117588" class="white--text">+54 9 11 2611-7588</a></p>
-                <p> <a href="mailto:hola@sim-giftbox.com" class="white--text">hola@sim-giftbox.com</a></p>
-                <h6 class="mb-2">Suscribite a nuestro newsletter mensual</h6>
-                <v-text-field outlined dense append-icon="mdi-send" @click:append="subscribeEmail"
-                    label="Ingresa tu email" v-model="emailSuscribe"></v-text-field>
+                <h5 class="mb-4">Seguinos en Redes</h5>
+               <v-btn href="https://www.instagram.com/barrierclima/" target="_blank" fab class="mr-2" color="white">
+                    <v-icon color="primary_text">mdi-instagram</v-icon>
+                </v-btn>
+                <v-btn href="https://www.facebook.com/barrierclima" target="_blank" fab color="white">
+                    <v-icon color="primary_text">mdi-facebook</v-icon>
+                </v-btn>
             </v-col>
         </v-row>
         <v-divider class="mb-3"></v-divider>
         <v-row>
             <v-col class="text-center">
-                <p class="px-8 px-lg-3">SIM Gift Box @‌2024 todos los derechos reservados - Diseño y Desarrollo: <a href="https://www.trade-design.com.ar/" target="_blak">Trade Design.</a></p>
+                <p class="px-8 px-lg-3">‌© Copyright <a href="https://www.trade-design.com.ar/" target="_blak" class="white--text">Trade Design 2025</a></p>
             </v-col>
         </v-row>
     </v-container>

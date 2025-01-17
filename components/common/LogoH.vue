@@ -1,5 +1,5 @@
 <template>
-    <img alt="SIM" :src="$vuetify.theme.dark || dark ? '/img/SIM_logo_dark.svg' : '/img/SIM_logo.svg'" :width="width" />
+    <img alt="Barrier" :src="$vuetify.theme.dark || dark ? '/img/logo_dark.png' : '/img/logo.png'" :width="width" />
 </template>
 
 <script>
@@ -12,7 +12,7 @@ export default {
         },
         width: {
             type: [String, Number],
-            default: '150'
+            default: '200'
         },
     }
 }

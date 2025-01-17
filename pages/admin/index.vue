@@ -6,7 +6,7 @@
 
                 <h3 class="primary--text py-10">Bienvenidos</h3>
                 <h2 class="primary--text py-10">Gestion de Contenidos de </h2>
-                <h2 class="primary--text py-10">SIM - Soluciones de Identidad de Marca</h2>
+                <h2 class="primary--text py-10">Barrier - Clima</h2>
                 <p>
                     
                 </p>

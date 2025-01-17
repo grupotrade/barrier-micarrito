@@ -5,31 +5,31 @@
                 <CommonLogoH dark class="ma-6" width="190" />
             </a>
             <v-list class="transparent">
-                <v-list-item @click="navigateToAnchor('categorias')">Colecciones</v-list-item>
-                <v-list-item @click="navigateToAnchor('porque')">Sobre nosotros</v-list-item>
-                <v-list-item @click="navigateToAnchor('pasos')">Cómo funciona</v-list-item>
-                <!-- <v-list-item @click="navigateToAnchor('testimonios')">Testimonios</v-list-item> -->
-                <v-list-item target="_blank"
-                    href="https://api.whatsapp.com/send?phone=5491126117588&text=Hola,%20estoy%20visitando%20tu%20tienda%20online%20y%20me%20gustar%C3%ADa%20consultarte%20por">Contacto</v-list-item>
-                <v-list-item @click="$router.push('/blog')">Blog</v-list-item>
+                <v-list-item @click="navigateToAnchor('categorias')">Home</v-list-item>
+                <v-list-item @click="navigateToAnchor('porque')">Servicios</v-list-item>
+                <v-list-item @click="navigateToAnchor('pasos')">Productos</v-list-item>
+                <v-list-item @click="navigateToAnchor('testimonios')">Nosotros</v-list-item> 
             </v-list>
         </v-navigation-drawer>
         <v-app-bar app fixed color="app-bar-site" flat height="78" v-if="!$vuetify.breakpoint.xs">
-            <a  @click="$router.push('/')">
-                <CommonLogoH class="mr-4" />
-            </a>
-            <v-spacer />
-            <v-btn text class="mx-2" color="secondary_text" @click="navigateToAnchor('categorias')">Colecciones</v-btn>
-            <v-btn text class="mx-2" color="secondary_text" @click="navigateToAnchor('porque')">Sobre nosotros</v-btn>
-            <v-btn text class="mx-2" color="secondary_text" @click="navigateToAnchor('pasos')">Cómo funciona</v-btn>
-            <!-- <v-btn text class="mx-2" color="secondary_text" @click="navigateToAnchor('testimonios')">Testimonios</v-btn> -->
-            <v-btn text class="mx-2" color="secondary_text" target="_blank"
-                href="https://api.whatsapp.com/send?phone=5491126117588&text=Hola,%20estoy%20visitando%20tu%20tienda%20online%20y%20me%20gustar%C3%ADa%20consultarte%20por">Contacto</v-btn>
-            <v-btn text class="mx-2" color="secondary_text" @click="$router.push('/blog')">blog</v-btn>
-            <v-spacer />
+            <v-container fluid class="container-inner py-3 mx-auto">
+                <v-row>
+                    <v-col cols="12" md="4">
+                        <a  @click="$router.push('/')">
+                            <CommonLogoH class="mr-4" />
+                        </a>
+                    </v-col>
+                    <v-col cols="12" md="8" class="d-flex justify-end align-center">
+                        <v-btn text class="mx-2" color="secondary_text" @click="navigateToAnchor('categorias')">Home</v-btn>
+            <v-btn text class="mx-2" color="secondary_text" @click="navigateToAnchor('porque')">Servicios</v-btn>
+                        <v-btn text class="mx-2" color="secondary_text" @click="navigateToAnchor('pasos')">Productos</v-btn>
+                        <v-btn text class="mx-2" color="secondary_text" @click="navigateToAnchor('testimonios')">Nosotros</v-btn> 
+                    </v-col>
+                </v-row>
+            <!-- <v-spacer />
             <v-btn text class="mx-2" color="secondary_text" @click="openCart"><v-icon
                     class="secondary_text--text">mdi-cart-outline</v-icon>
-                <v-badge v-if="cart && cart.length > 0" color="secondary" :content="cart.length"></v-badge></v-btn>
+                <v-badge v-if="cart && cart.length > 0" color="secondary" :content="cart.length"></v-badge></v-btn> -->
             <!-- <v-autocomplete v-model="productSelected" hide-details outlined rounded prepend-inner-icon="mdi-magnify"
                 label="Busqueda rápida" class="transparent" return-object :items="searchResults" dense
                 :loading="loadingSearchResults" :search-input.sync="searchTerm" item-text="name" @change="viewProduct()"
@@ -66,6 +66,7 @@
             Ingresar
         </v-btn> -->
             <v-app-bar-nav-icon @click.stop="menuMobile = !menuMobile" class="d-xs-block d-md-none" />
+            </v-container>
         </v-app-bar>
         <v-app-bar app fixed color="app-bar-site" height="78" dark v-else>
             <CommonLogoH :width="140" />
