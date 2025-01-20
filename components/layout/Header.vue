@@ -20,10 +20,10 @@
                         </a>
                     </v-col>
                     <v-col cols="12" md="8" class="d-flex justify-end align-center">
-                        <v-btn text class="mx-2" color="secondary_text" @click="navigateToAnchor('categorias')">Home</v-btn>
-            <v-btn text class="mx-2" color="secondary_text" @click="navigateToAnchor('porque')">Servicios</v-btn>
-                        <v-btn text class="mx-2" color="secondary_text" @click="navigateToAnchor('pasos')">Productos</v-btn>
-                        <v-btn text class="mx-2" color="secondary_text" @click="navigateToAnchor('testimonios')">Nosotros</v-btn> 
+                        <v-btn text class="mx-2" color="secondary_text" @click="navigateTo('/')">Home</v-btn>
+            <v-btn text class="mx-2" color="secondary_text" @click="navigateTo('/servicios')">Servicios</v-btn>
+                        <v-btn text class="mx-2" color="secondary_text" @click="navigateTo('/productos')">Productos</v-btn>
+                        <v-btn text class="mx-2" color="secondary_text" @click="navigateTo('/nosotros')">Nosotros</v-btn> 
                     </v-col>
                 </v-row>
             <!-- <v-spacer />
@@ -67,14 +67,19 @@
         </v-btn> -->
             <v-app-bar-nav-icon @click.stop="menuMobile = !menuMobile" class="d-xs-block d-md-none" />
             </v-container>
+
         </v-app-bar>
+        
         <v-app-bar app fixed color="app-bar-site" height="78" dark v-else>
             <CommonLogoH :width="140" />
             <v-spacer></v-spacer>
             <v-btn text class="mx-2" @click="openCart"><v-icon class="secondary--text">mdi-cart-outline</v-icon><v-badge
                     v-if="cart && cart.length > 0" color="secondary" :content="cart.length"></v-badge></v-btn>
             <v-app-bar-nav-icon @click.stop="menuMobile = !menuMobile" class="d-xs-block d-md-none" color="black" />
+                    <v-divider></v-divider>
+
         </v-app-bar>
+
         <DialogsLogin v-model="loginDialog" @openRegister="openRegister" />
         <ProductsViewProductDialog v-model="viewProductDialog" :product="productSelected"
             v-if="productSelected != null" />
@@ -149,19 +154,7 @@ export default {
             }, error => {
                
             })
-        },
-        navigateToAnchor(anchor) {
-            if (this.$route.path !== '/') {
-                this.$router.push('/')
-                    setTimeout(() => {
-                        this.scrollToId(anchor);
-
-        }, 700);
-               
-            } else {
-                this.scrollToId(anchor);
-            }
-        },
+        }
     }
 }
 </script>

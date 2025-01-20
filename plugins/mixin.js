@@ -204,6 +204,9 @@ Vue.mixin({
             navigator.clipboard.writeText(text)
             this.$toasted.info(this.$t('copied'), { theme: "outline", duration: 600, position: 'bottom-right', })
         },
+        navigateTo(routeName) {
+            this.$router.push(routeName);
+        },
         scrollToId(id, offset = 100) {
             const element = document.getElementById(id);
             if (element) {

@@ -2,7 +2,7 @@
 <v-container class="fill-height">
     <v-row align="center" justify="center" dense>
         <v-col cols="12" sm="8" md="4" align="center">
-            <CommonLogo class="mb-4" dark width="120" />
+            <CommonLogoH class="mb-4" dark width="120" />
 
             <v-card  class="elevation-4 text-center" color="white" light tile>
                 <v-card-text class="px-8 pb-4">

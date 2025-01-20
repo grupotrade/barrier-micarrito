@@ -23,7 +23,7 @@ export const actions = {
                     mailcollection.add({
                         to: payload.email,
                         message: {
-                          subject: 'Bienvenido a SIM Gift Box',
+                          subject: 'Bienvenido a Barrier Clima',
                           html: '<h3>¡Felicitaciones!</h3> <p>Ya estás registrado a la <strong>Plataforma de Gestión de Contenidos de SIM Gift Box</strong>, by Trade Design</p><p>Por cualquier inquietud o consulta, puedes comunicarte con nosotros a través del siguiente mail: hola@trade-design.com.ar</p><p>Saludos,</p><p>El Equido de Trade Design</p>'
                         }
                       })
