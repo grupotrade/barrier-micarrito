@@ -31,7 +31,7 @@
         </v-row>
     </v-container>
         <v-btn class="whatsapp" fab target="_blank"
-            href="https://api.whatsapp.com/send?phone=5491126117588&text=Hola,%20estoy%20visitando%20tu%20tienda%20online%20y%20me%20gustar%C3%ADa%20consultarte%20por">
+            href="https://wa.me/5491137827119?text=Hola%20Barrier!%20Necesito%20asesoramiento%20sobre%20https%3A%2F%2Fbarrierclima.com.ar%2F">
             <v-icon large color="white">mdi-whatsapp</v-icon>
         </v-btn>
     </v-footer>

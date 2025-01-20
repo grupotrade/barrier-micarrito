@@ -20,7 +20,7 @@
                     </p>
                     <v-row class="mt-12">
                         <v-col cols="12" md="12">
-                            <v-btn color="primary" class="rounded-md" depressed>Consultar por Whatsapp</v-btn>
+                            <v-btn color="primary" class="rounded-md" depressed target="_blank" href="https://wa.me/5491137827119?text=Hola%20Barrier!%20Necesito%20asesoramiento%20sobre%20https%3A%2F%2Fbarrierclima.com.ar%2F">Consultar por Whatsapp</v-btn>
                         </v-col>
                         <v-col cols="12" md="12">
                             <v-btn color="primary" class="rounded-md" depressed>Consultar por Email</v-btn>

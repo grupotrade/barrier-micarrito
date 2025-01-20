@@ -5,10 +5,10 @@
                 <CommonLogoH dark class="ma-6" width="190" />
             </a>
             <v-list class="transparent">
-                <v-list-item @click="navigateToAnchor('categorias')">Home</v-list-item>
-                <v-list-item @click="navigateToAnchor('porque')">Servicios</v-list-item>
-                <v-list-item @click="navigateToAnchor('pasos')">Productos</v-list-item>
-                <v-list-item @click="navigateToAnchor('testimonios')">Nosotros</v-list-item> 
+                <v-list-item @click="navigateTo('/')">Home</v-list-item>
+                <v-list-item @click="navigateTo('/servicios')">Servicios</v-list-item>
+                <v-list-item @click="navigateTo('/productos')">Productos</v-list-item>
+                <v-list-item @click="navigateTo('/nosotros')">Nosotros</v-list-item> 
             </v-list>
         </v-navigation-drawer>
         <v-app-bar app fixed color="app-bar-site" flat height="78" v-if="!$vuetify.breakpoint.xs">
@@ -26,57 +26,18 @@
                         <v-btn text class="mx-2" color="secondary_text" @click="navigateTo('/nosotros')">Nosotros</v-btn> 
                     </v-col>
                 </v-row>
-            <!-- <v-spacer />
-            <v-btn text class="mx-2" color="secondary_text" @click="openCart"><v-icon
-                    class="secondary_text--text">mdi-cart-outline</v-icon>
-                <v-badge v-if="cart && cart.length > 0" color="secondary" :content="cart.length"></v-badge></v-btn> -->
-            <!-- <v-autocomplete v-model="productSelected" hide-details outlined rounded prepend-inner-icon="mdi-magnify"
-                label="Busqueda rápida" class="transparent" return-object :items="searchResults" dense
-                :loading="loadingSearchResults" :search-input.sync="searchTerm" item-text="name" @change="viewProduct()"
-                item-value="id">
-                <template v-slot:no-data>
-                    <p class="grey--text ml-2 pa-2 mb-0">
-                        Escribí el nombre de la lámina
-                    </p>
-                </template>
-</v-autocomplete> -->
-
-            <!-- <v-tooltip bottom content-class="bottom" v-if="!this.$vuetify.theme.dark">
-            <template v-slot:activator="{ on }">
-                <v-btn icon @click.stop="toggleTheme" v-on="on">
-                    <v-icon color="secondary_text_dark" >dark_mode</v-icon>
-                </v-btn>
-            </template>
-            <span>{{ $t('change_to_theme_dark')}}</span>
-        </v-tooltip>
-        <v-tooltip bottom content-class="bottom" v-else>
-            <template v-slot:activator="{ on }">
-                <v-btn icon @click.stop="toggleTheme" v-on="on">
-                    <v-icon color="secondary_text" >light_mode</v-icon>
-                </v-btn>
-            </template>
-            <span>{{ $t('change_to_theme_light')}}</span>
-        </v-tooltip> -->
-            <!-- <v-btn fab class="body-2 mr-3 primary--text" depressed @click="userDrawer = !userDrawer" v-if="user.displayName">
-            <v-badge bordered bottom color="success" class="float-right" dot offset-x="10" offset-y="10">
-                <CommonAvatar :alt="user.displayName" size="40" />
-            </v-badge>
-        </v-btn>
-        <v-btn text @click="openLogin" v-else>
-            Ingresar
-        </v-btn> -->
             <v-app-bar-nav-icon @click.stop="menuMobile = !menuMobile" class="d-xs-block d-md-none" />
             </v-container>
 
         </v-app-bar>
         
         <v-app-bar app fixed color="app-bar-site" height="78" dark v-else>
-            <CommonLogoH :width="140" />
+            <CommonLogoH :width="150" />
             <v-spacer></v-spacer>
-            <v-btn text class="mx-2" @click="openCart"><v-icon class="secondary--text">mdi-cart-outline</v-icon><v-badge
-                    v-if="cart && cart.length > 0" color="secondary" :content="cart.length"></v-badge></v-btn>
-            <v-app-bar-nav-icon @click.stop="menuMobile = !menuMobile" class="d-xs-block d-md-none" color="black" />
-                    <v-divider></v-divider>
+            <!-- <v-btn text class="mx-2" @click="openCart"><v-icon class="secondary--text">mdi-cart-outline</v-icon><v-badge
+                    v-if="cart && cart.length > 0" color="secondary" :content="cart.length"></v-badge></v-btn> -->
+            <v-app-bar-nav-icon @click.stop="menuMobile = !menuMobile" class="d-xs-block d-md-none mr-4" color="black" />
+                   
 
         </v-app-bar>
 

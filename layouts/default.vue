@@ -4,7 +4,7 @@
     <LayoutHeader :user="user" />
     <confirm-dialog />
     <snackbar />
-    <v-container fluid class="container-default py-0" :class="($vuetify.breakpoint.xs)? 'px-0' : 'px-0'">
+    <v-container fluid class="container-default py-0" :class="($vuetify.breakpoint.xs)? 'px-4' : 'px-0'">
         <nuxt />
     </v-container>
    <LayoutFooter />
