@@ -3,11 +3,11 @@
         <v-sheet class="container-banner">
             <BannersListBanners position="home-header" />
         </v-sheet>
-        <v-container fluid class="container-inner categories mt-12">
+        <v-container fluid class="container-inner mt-12">
        <ServicesCards />
     </v-container>
         <!-- How We Work -->
-        <v-container fluid class="container-inner mt-10 how-we-work">
+        <v-container fluid class="container-inner mt-12">
             <h2 class="separator">¿CÓMO TRABAJAMOS?</h2>
             <v-row>
                 <v-col cols="12" md="3">
@@ -57,10 +57,9 @@
                 </v-col>
             </v-row>
         </v-container>
-        <v-container fluid id="clientes" class="grey lighten-3 text-center px-0 py-6">
+        <v-container fluid class="container-inner mt-12">
             <h3 class="pb-12">Trabajamos con marcas líderes en el Mercado.</h3>
             <client-only>
-
                 <BrandsSlider />
             </client-only>
         </v-container>

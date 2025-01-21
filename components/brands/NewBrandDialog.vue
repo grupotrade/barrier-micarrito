@@ -27,7 +27,7 @@
                     <v-row dense>
                         <v-col>
                             <v-text-field dense outlined class="body-1" background-color="foreground" required :rules="rulesGlobal.required" v-model="brand.name" label="Nombre" color="secondary"></v-text-field>
-                            <v-select dense outlined class="body-1" background-color="foreground" v-model="brand.category" :items="categories" return-object item-text="name" label="Categoría" color="secondary"></v-select>
+                            <v-select dense outlined class="body-1" background-color="foreground" v-model="brand.category" :items="categories"  required :rules="rulesGlobal.required" return-object item-text="name" label="Categoría" color="secondary"></v-select>
                             <v-text-field dense outlined class="body-1" background-color="foreground" v-model="brand.url" label="Link" color="secondary"></v-text-field>
                         </v-col>
                     </v-row>

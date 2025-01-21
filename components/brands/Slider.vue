@@ -1,7 +1,11 @@
 <template>
-    <div>
-        <img :src="getImageUrl(brand.image)" v-for="brand in brands" :key="brand.id" height="150" class="mx-7" />
-    </div>
+  <v-sheet class="white pb-12">
+  <v-row>
+    <v-col v-for="brand in brands" :key="brand.id" cols="12" md="3" class="d-flex justify-center align-center">
+      <img :src="getImageUrl(brand.image)" class="mx-7" />
+    </v-col>
+  </v-row>
+  </v-sheet>
   </template>
   
   <script>
