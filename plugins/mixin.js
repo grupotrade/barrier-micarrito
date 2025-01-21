@@ -69,64 +69,8 @@ Vue.mixin({
             },
             itemsPerPageOrderList: [3, 5],
             itemsPerPageSetter: [10, 25, 50, -1],
-            itemsPerPageSetterDialogs: [5, 7],
-            serviceTypes: [{
-                    Key: -1,
-                    Value: "ALL",
-                    Description: "Todos"
-                },
-                {
-                    Key: 0,
-                    Value: "HOT",
-                    Description: "Alojamientos"
-                },
-                {
-                    Key: 1,
-                    Value: "AIR",
-                    Description: "Aéreos"
-                },
-                {
-                    Key: 2,
-                    Value: "CAR",
-                    Description: "Autos"
-                },
-                {
-                    Key: 3,
-                    Value: "TRF",
-                    Description: "Traslados"
-                },
-                {
-                    Key: 4,
-                    Value: "CRU",
-                    Description: "Cruceros"
-                },
-                {
-                    Key: 5,
-                    Value: "SIG",
-                    Description: "Atracciones"
-                },
-                {
-                    Key: 6,
-                    Value: "CIR",
-                    Description: "Circuitos"
-                },
-                {
-                    Key: 7,
-                    Value: "ASS",
-                    Description: "Asistencias"
-                },
-                {
-                    Key: 8,
-                    Value: "PKG",
-                    Description: "Cupos Aéreos"
-                },
-                {
-                    Key: 9,
-                    Value: "DIS",
-                    Description: "Disney"
-                }
-            ],
-            storageBucket: 'https://firebasestorage.googleapis.com/v0/b/tradehouse-sitio.appspot.com/o/'
+            itemsPerPageSetterDialogs: [5, 7]
+           
         }
     },
     computed: {
