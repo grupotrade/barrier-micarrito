@@ -58,7 +58,7 @@
         <v-sheet class="mb-10">
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3905.9759139641815!2d-58.62825243461283!3d-34.590981212096644!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcb96437203d5b%3A0xf27ce8e2b7d73176!2sGral.%20Bernardo%20O&#39;Higgins%20910%2C%20B1686%20Hurlingham%2C%20Provincia%20de%20Buenos%20Aires!5e0!3m2!1ses-419!2sar!4v1737403199994!5m2!1ses-419!2sar" width="100%" height="340" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </v-sheet>
-            <v-container fluid class="container-inner mt-12">
+            <!-- <v-container fluid class="container-inner mt-12">
             <v-row>
                     <v-col cols="12" md="4">
                         <h3>Testimonios</h3>
@@ -68,7 +68,7 @@
                     </p>
                 </v-col>
             </v-row>
-        </v-container>
+        </v-container> -->
         <v-container fluid class="container-inner mt-12 pb-12">
             <v-row>
                     <v-col cols="12" md="4">

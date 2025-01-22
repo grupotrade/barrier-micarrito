@@ -46,7 +46,7 @@
                         gases producto de la misma.
                     </p>
                     <v-row class="mt-12">
-                        <v-col cols="12" md="6">
+                        <v-col cols="12" md="6" v-if="false">
                             <v-btn color="primary" class="rounded-md" depressed>Ver productos</v-btn>
                         </v-col>
                         <v-col cols="12" md="6">
@@ -74,7 +74,7 @@
                         le transfiera la temperatura a dicho suelo y así liberarla al ambiente.
                     </p>
                     <v-row class="mt-12">
-                        <v-col cols="12" md="6">
+                        <v-col cols="12" md="6" v-if="false">
                             <v-btn color="primary" class="rounded-md" depressed>Ver productos</v-btn>
                         </v-col>
                         <v-col cols="12" md="6">
@@ -97,7 +97,7 @@
                         en tu consumo de gas.
                     </p>
                     <v-row class="mt-12">
-                        <v-col cols="12" md="6">
+                        <v-col cols="12" md="6" v-if="false">
                             <v-btn color="primary" class="rounded-md" depressed>Ver productos</v-btn>
                         </v-col>
                         <v-col cols="12" md="6">
@@ -128,7 +128,7 @@
                         el espacio util a ocupar por dicha unidad exterior.
                     </p>
                     <v-row class="mt-12">
-                        <v-col cols="12" md="6">
+                        <v-col cols="12" md="6" v-if="false">
                             <v-btn color="primary" class="rounded-md" depressed>Ver productos</v-btn>
                         </v-col>
                         <v-col cols="12" md="6">
@@ -156,7 +156,7 @@
                         eléctrica, son una gran opción para climatizar tu hogar.
                     </p>
                     <v-row class="mt-12">
-                        <v-col cols="12" md="6">
+                        <v-col cols="12" md="6" v-if="false">
                             <v-btn color="primary" class="rounded-md" depressed>Ver productos</v-btn>
                         </v-col>
                         <v-col cols="12" md="6">
@@ -185,7 +185,7 @@
                         gabinete exterior sin ocupar grandes espacios.
                     </p>
                     <v-row class="mt-12">
-                        <v-col cols="12" md="6">
+                        <v-col cols="12" md="6" v-if="false">
                             <v-btn color="primary" class="rounded-md" depressed>Ver productos</v-btn>
                         </v-col>
                         <v-col cols="12" md="6">
@@ -217,7 +217,7 @@
                         en departamentos con falta de espacio físico y zonas de agua con poco sarro.
                     </p>
                     <v-row class="mt-12">
-                        <v-col cols="12" md="6">
+                        <v-col cols="12" md="6" v-if="false">
                             <v-btn color="primary" class="rounded-md" depressed>Ver productos</v-btn>
                         </v-col>
                         <v-col cols="12" md="6">
