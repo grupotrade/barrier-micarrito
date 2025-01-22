@@ -3,7 +3,7 @@
         <v-container fluid class="container-inner mt-12 pt-12 pb-12">
             <v-row>
                 <v-col cols="12" md="4">
-                    <h3>Comercios</h3>
+                    <h3 class="semi">Comercios</h3>
                     <v-divider class="line-title primary" ></v-divider>
                     <p class="mt-4">
                         Tu negocio, también nos importa.

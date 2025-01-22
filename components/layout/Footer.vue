@@ -1,5 +1,5 @@
 <template>
-    <v-footer :class="(!$vuetify.breakpoint.xs) ? 'py-6' : 'py-6'" class="primary_text d-block" dark>
+    <v-footer :class="(!$vuetify.breakpoint.xs) ? 'py-6' : 'py-6'" class="footer d-block" dark>
         <v-container class="container-inner pa-0">
         <v-row dense class="justify-center  flex-column flex-lg-row">
             <v-col cols="12" lg="4">
@@ -8,9 +8,9 @@
             </v-col>
             <v-col cols="12" lg="4" class="pl-8">
                 <h5 class="mb-4">Contacto</h5>
-                <p>O'Higgins 910 Hurlingham, Buenos Aires, Argentina</p>
+                <p><a class="white--text" href="https://www.google.com/maps/place/Gral.+Bernardo+O'Higgins+910,+B1686+Hurlingham,+Provincia+de+Buenos+Aires/@-34.59114,-58.626119,16z/data=!4m6!3m5!1s0x95bcb96437203d5b:0xf27ce8e2b7d73176!8m2!3d-34.5911404!4d-58.6261188!16s%2Fg%2F11k4rnq2gy?hl=es-419&entry=ttu&g_ep=EgoyMDI1MDExNS4wIKXMDSoASAFQAw%3D%3D" target="_blank">O'Higgins 910 Hurlingham, Buenos Aires, Argentina</a></p>
                 <p> <a href="phone:+549114662614" class="white--text">+54 9 11 4662-614</a></p>
-                <p> <a href="mailto:hola@sim-giftbox.com" class="white--text">info@barrierclima.com.ar</a></p>
+                <p> <a href="mailto:info@barrierclima.com.ar" class="white--text">info@barrierclima.com.ar</a></p>
               <p>Lu-Vi 10am a 13pm - 14pm a 18.30pm</p>
             </v-col>
             <v-col cols="12" lg="4" class="text-md-right">
@@ -74,3 +74,9 @@ export default {
     }
 }
 </script>
+
+<style>
+.footer {
+    background-color: #1E5FBE;
+}
+</style>

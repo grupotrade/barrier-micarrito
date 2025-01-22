@@ -11,7 +11,7 @@
             <h2 class="separator">¿CÓMO TRABAJAMOS?</h2>
             <v-row>
                 <v-col cols="12" md="3">
-                    <h4 class="py-6">Tu comodidad, nuestro compromiso.</h4>
+                    <h3 class="py-6 semi">Tu comodidad, nuestro compromiso.</h3>
                     <p>Creemos que es posible mejorar tu calidad de
                         vida y el confort en tu hogar. Por eso, nos encargamos de cada etapa del proyecto para
                         garantizar tu total satisfacción. Contamos con
@@ -58,7 +58,7 @@
             </v-row>
         </v-container>
         <v-container fluid class="container-inner mt-12">
-            <h3 class="pb-12">Trabajamos con marcas líderes en el Mercado.</h3>
+            <h3 class="semi pb-12">Trabajamos con marcas líderes en el Mercado.</h3>
             <client-only>
                 <BrandsSlider />
             </client-only>

@@ -4,7 +4,7 @@
             <v-carousel v-if="banners.length > 1" hide-delimiters :height="carouselHeight" cycle :interval="5000"
                 continuous @change="handleCarouselChange">
                 <v-carousel-item v-for="banner in banners" :key="banner.name">
-                    <v-card flat tile   @click="goToUrl(banner)" :class="{ 'no-clickable-card': !banners[0]?.url }" :ripple="banners[0]?.url">
+                    <v-card flat tile   @click="goToUrl(banner)" :class="{ 'no-clickable-card': !banners[0]?.url }" :ripple="banners[0]?.url ? true : false">
                         <img :src="getImageSrc(banner)" style="max-width: 100%" @load="setCarouselHeight"  />
 
                     </v-card>
@@ -13,7 +13,7 @@
                     </v-sheet>
                 </v-carousel-item>
             </v-carousel>
-            <v-card flat tile @click="goToUrl(banners[0])" v-else :class="{ 'no-clickable-card': !banners[0]?.url }" :ripple="banners[0]?.url">
+            <v-card flat tile @click="goToUrl(banners[0])" v-else :class="{ 'no-clickable-card': !banners[0]?.url }" :ripple="banners[0]?.url ? true : false">
             <v-img :src="getImageSrc(banners[0])" cover contain ></v-img>
             </v-card>
         </v-card>
