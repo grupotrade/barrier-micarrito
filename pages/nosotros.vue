@@ -16,9 +16,9 @@
             <v-row class="mt-12">
 
                 <v-col cols="12" md="5">
-                    <p class="mt-8">
+                    <p>
                         Barrier Clima SRL es una empresa familiar, dirigida y atendida por sus dueños. Dedicada a la Climatización (Calefaccion y Aire  Acondicionado) y Tratamiento de Agua Sanitaria (Aguas Duras o con Sarro) de viviendas, clubes, fábricas, etc.</p>
-<p>Trabajamos en AMBA siendo distribuidores de marcas de primera  línea. Esto garantiza la calidad de los productos y su buen  funcionamiento a lo largo del tiempo.</p>
+<p >Trabajamos en AMBA siendo distribuidores de marcas de primera  línea. Esto garantiza la calidad de los productos y su buen  funcionamiento a lo largo del tiempo.</p>
 <p>Elegimos trabajar con TRIANGULAR como Distribuidores y Servicio  Técnico Oficial de Zona Oeste, que nos provee de todos los equipos y  accesorios de calefacción (Calderas, Radiadores, Piso Radiante,etc);  SURREY como Agentes Oficiales en equipos de aire acondicionado y  ELEKTRIM también como Agentes Oficiales para el tratamiento de aguas  duras.</p>
 <p>Realizamos el cálculo térmico y diseño de cañería en planos, la  venta de equipos, la instalación y el seguimiento personalizado para  garantizar un eficiente sistema de calefacción por agua caliente,  refrigeración y uso de ablandadores de agua para la protección del  sistema.</p>
 <p>Nuestras obras abarcan barrios privados, edificios y domicilios  particulares. Contamos con una larga trayectoria construida sobre la  confianza de nuestros clientes, quienes hoy en día son nuestra principal fuente de recomendación.</p>
@@ -26,7 +26,9 @@
 
                 </v-col>
                 <v-col cols="12" md="7">
-                    <v-img src="./img/services/nosotros.png"></v-img>
+                    <v-carousel height="540px" hide-delimiters cycle>
+                        <v-carousel-item v-for="item in items" a :key="item.id" :src="item.src" cover></v-carousel-item>
+                    </v-carousel>
                 </v-col>
 
             </v-row>
@@ -91,6 +93,11 @@ export default {
     data() {
         return {
             loading: false,
+            items: [
+                { src: './img/nosotros/1.jpg' },
+                { src: './img/nosotros/2.jpg' },
+                { src: './img/nosotros/3.jpg' },
+            ]
 
         }
     },

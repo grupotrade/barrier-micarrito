@@ -184,6 +184,7 @@ label {
 .app-bar-site {
     background: white !important;
     z-index: 100;
+    padding: 0 16px !important;
     border-bottom: 1px solid #bbb7b7 !important;
 }
 
@@ -289,9 +290,9 @@ label {
 } 
 
 .line-title {
-    border-width: 3px !important;
-    width: 20% !important; 
-    margin-top: 4px;
+    border-top-width: 2px !important;
+    width: 23% !important; 
+    margin-top: 10px;
 }
 
 

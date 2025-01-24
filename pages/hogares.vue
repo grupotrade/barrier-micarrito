@@ -269,7 +269,7 @@ button {
     width: 100%;
     color: white;
     font-size: 1.5rem;
-    line-height: 1.5rem;
+    line-height: 1.8rem;
     border: none;
     border-radius: 2px;
     cursor: pointer;

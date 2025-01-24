@@ -11,8 +11,15 @@
                 <v-list-item @click="navigateTo('/nosotros')">Nosotros</v-list-item> 
             </v-list>
         </v-navigation-drawer>
-        <v-app-bar app fixed color="app-bar-site" flat height="78" v-if="!$vuetify.breakpoint.xs">
-            <v-container fluid class="container-inner py-3 mx-auto">
+        <v-container fluid class="pt-2 grey lighten-4">
+                
+                <p class="mb-0 text-right pr-12 body-2">O'Higgins 910   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (+5411) 4662-6140</p>
+           
+       
+        </v-container>
+        <v-app-bar app fixed color="app-bar-site" flat height="95"  class="mt-8" v-if="!$vuetify.breakpoint.xs">
+           
+            <v-container fluid class="container-inner mx-auto">
                 <v-row>
                     <v-col cols="12" md="4">
                         <a  @click="$router.push('/')">

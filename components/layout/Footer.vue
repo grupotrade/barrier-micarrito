@@ -16,10 +16,10 @@
             <v-col cols="12" lg="4" class="text-md-right">
                 <h5 class="mb-4">Seguinos en Redes</h5>
                <v-btn href="https://www.instagram.com/barrierclima/" target="_blank" fab class="mr-2" color="white">
-                    <v-icon color="primary_text">mdi-instagram</v-icon>
+                    <v-icon color="black">mdi-instagram</v-icon>
                 </v-btn>
                 <v-btn href="https://www.facebook.com/barrierclima" target="_blank" fab color="white">
-                    <v-icon color="primary_text">mdi-facebook</v-icon>
+                    <v-icon color="black">mdi-facebook</v-icon>
                 </v-btn>
             </v-col>
         </v-row>

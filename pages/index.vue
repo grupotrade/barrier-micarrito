@@ -59,7 +59,7 @@
             </v-row>
         </v-container>
         <v-container fluid class="container-inner mt-12 pb-12">
-            <h3 class="semi pb-12">Trabajamos con marcas líderes en el Mercado.</h3>
+            <h3 class="semi pt-10 pb-12">Trabajamos con marcas líderes en el Mercado.</h3>
             <client-only>
                 <BrandsSlider />
             </client-only>
