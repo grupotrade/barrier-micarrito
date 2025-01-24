@@ -25,9 +25,10 @@
                             <div
                                 :style="{ backgroundColor: getColor(step.number), borderRadius: '50%', width: '70px', height: '70px', margin: '0 auto' }">
                             </div>
-                            <p class="text-center mt-10 mx-4">{{ step.number }}
-                                <br> {{ step.text }}
-                            </p>
+                            <div class="text-center semi mt-10 mx-5">
+                                <p class="semi mb-0" v-html="step.number"></p>
+                                <p class="semi" v-html="step.text"></p>
+                            </div>
                         </v-col>
                     </v-row>
                 </v-col>
@@ -79,7 +80,7 @@ export default {
                 { number: 2, text: "PLANIFICACIÓN Y DISEÑO" },
                 { number: 3, text: "DESARROLLO DEL PROYECTO" },
                 { number: 4, text: "PUESTA EN MARCHA DEL SISTEMA" },
-                { number: 5, text: "SERVICIO POST VENTA" },
+                { number: 5, text: "SERVICIO POST&nbsp;VENTA" },
             ],
         }
     },
