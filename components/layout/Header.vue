@@ -11,7 +11,7 @@
                 <v-list-item @click="navigateTo('/nosotros')">Nosotros</v-list-item> 
             </v-list>
         </v-navigation-drawer>
-        <v-container fluid class="pt-2 grey lighten-4">
+        <v-container fluid style="position: fixed; top: 0; left: 0; right: 0; z-index: 1000;" class="pt-2 pb-1 grey lighten-4">
                 
                 <p class="mb-0 text-right pr-12 body-2">O'Higgins 910   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (+5411) 4662-6140</p>
            

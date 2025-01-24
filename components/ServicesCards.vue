@@ -2,7 +2,7 @@
      
             <v-row justify="center">
                 <v-col cols="12" md="4">
-                    <v-card @click="navigateTo('/hogares')">
+                    <v-card @click="navigateTo('/hogares')" class="primary">
                         <v-img src="/img/hogares.jpg" class="d-flex justify-center align-center image-filter">
                             <div class="pl-12">
                             <h3 class="white--text title-hover mt-10 title-hover">HOGARES</h3>
@@ -13,7 +13,7 @@
                     </v-card>
                 </v-col>
                 <v-col cols="12" md="4">
-                    <v-card @click="navigateTo('comercial')">
+                    <v-card @click="navigateTo('comercial')" class="primary">
                         <v-img src="/img/comercial.jpg" class="d-flex justify-center align-center image-filter">
                             <div class="pl-12">
                             <h3 class="white--text title-hover mt-10 title-hover">COMERCIAL</h3>
@@ -24,7 +24,7 @@
                     </v-card>
                 </v-col>
                 <v-col cols="12" md="4">
-                    <v-card @click="navigateTo('profesionales')">
+                    <v-card @click="navigateTo('profesionales')" class="primary">
                         <v-img src="/img/profesionales.jpg" class="d-flex justify-center align-center image-filter">
                             <div class="pl-12"> 
                             <h3 class="white--text title-hover mt-10 title-hover">PROFESIONALES DE OBRA</h3>
@@ -48,12 +48,13 @@ export default {
 
 <style scoped>
 .image-filter {
-    filter: hue-rotate(180deg) brightness(0.8);
+    filter: brightness(1) opacity(0.6);
     transition: filter 0.3s ease;
 }
 
 .image-filter:hover {
-    filter: hue-rotate(180deg) brightness(1);
+    filter: brightness(1.2) opacity(1);
+    transition: filter 0.3s ease;
 }
 
 .title-hover, .button-hover {
@@ -70,7 +71,7 @@ export default {
     color: #42A5F5; /* Cambia el color al pasar el mouse */
 }
 .line-color {
-    background-color: orange !important;
+    background-color: var(--v-primary-base) !important;
     margin-left: 0px !important;
     transition: all 0.3s ease; /* Asegura que la línea sea azul */
 }
