@@ -1,5 +1,5 @@
 <template>
-    <v-footer :class="(!$vuetify.breakpoint.xs) ? 'py-6' : 'py-6'" class="footer d-block" dark>
+    <v-footer :class="(!$vuetify.breakpoint.xs) ? 'py-6' : 'py-6'" class="footer d-block mt-10" dark>
         <v-container class="container-inner pa-0">
         <v-row dense class="justify-center  flex-column flex-lg-row">
             <v-col cols="12" lg="4">

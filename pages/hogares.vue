@@ -3,11 +3,11 @@
         <v-container fluid class="container-inner mt-12 pt-12 pb-12">
             <v-row>
                 <v-col cols="12" md="4">
-                    <h3 class="semi">Hogares</h3>
+                    <h2 class="semi">Hogares</h2>
                     <v-divider class="line-title primary"></v-divider>
-                    <p class="mt-4">
+                    <h5 class="mt-4">
                         El confort que mereces, en cada rincón de tu hogar.
-                    </p>
+                    </h5>
                 </v-col>
             </v-row>
             <v-row dense class="mt-12 mb-12">
@@ -30,7 +30,7 @@
             </v-row>
             <v-row class="mt-12">
                 <v-col cols="12" md="4">
-                    <h4 class="semi" id="calefaccion">Calefacción</h4>
+                    <h3 class="semi" id="calefaccion">Calefacción</h3>
                     <v-divider class="line-title primary"></v-divider>
                 </v-col>
             </v-row>
@@ -113,7 +113,7 @@
             </v-row>
             <v-row class="mt-12 ">
                 <v-col cols="12" md="4">
-                    <h4 class="semi" id="aire">Aire Acondicionado</h4>
+                    <h3 class="semi" id="aire">Aire Acondicionado</h3>
                     <v-divider class="line-title primary"></v-divider>
                 </v-col>
             </v-row>
@@ -169,7 +169,7 @@
             </v-row>
             <v-row class="mt-12">
                 <v-col cols="12" md="4">
-                    <h4 class="semi" id="ablandamiento">Ablandamiento de Agua</h4>
+                    <h3 class="semi" id="ablandamiento">Ablandamiento de Agua</h3>
                     <v-divider class="line-title primary"></v-divider>
                 </v-col>
             </v-row>
@@ -200,7 +200,7 @@
             </v-row>
             <v-row class="mt-12">
                 <v-col cols="12" md="4">
-                    <h4 class="semi" id="caliente">Agua Caliente Sanitaria</h4>
+                    <h3 class="semi" id="caliente">Agua Caliente Sanitaria</h3>
                     <v-divider class="line-title primary"></v-divider>
                 </v-col>
             </v-row>

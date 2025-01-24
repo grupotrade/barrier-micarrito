@@ -2,8 +2,8 @@
     <v-sheet>
         <v-container fluid class="container-inner mt-12 pt-12 pb-12">
             <v-row>
-                <v-col cols="12" md="4">
-                    <h3 class="semi">Profesionales de Obra</h3>
+                <v-col cols="12" md="7">
+                    <h2 class="semi">Profesionales de Obra</h2>
                     <v-divider class="line-title primary" ></v-divider>
                     <p class="mt-4">
                        
@@ -12,18 +12,24 @@
             </v-row>
             <v-row class="mt-12">
                 <v-col cols="12" md="8">
-                    <v-img src="./img/services/profesionales.jpg"></v-img>
+                    <v-img height="520px" cover src="./img/services/profesionales.jpg"></v-img>
                 </v-col>
                 <v-col cols="12" md="4">
-                    <p class="mt-8">
-                        Con una amplia cartilla de instaladores que cuentan con nosotros hace  varios años para adquirir los equipos de sus obras y asi tambien de todo el asesoramiento, vos tambien podes hacerlo. Contamos con el servicio de atención al rubro, lo cual te brinda toda  nuestra disponibilidad a la hora de consultar tus dudas y de  conocimientos para poder llevar tus obras a cabo sin tener problemas en  el funcionamiento de los equipos por una incorrecta instalacion. Ya sea  dimensionamiento de cañerías, dibujo en plano de las mismas hasta  listado de materiales necesarios. No dudes en consultarnos para poder ser parte de nuestro equipo de instaladores.
+                    <p class="mt-4">
+                        Con una amplia cartilla de instaladores que cuentan con nosotros hace  varios años para adquirir los equipos de sus obras y asi tambien de todo el asesoramiento, vos tambien podes hacerlo.
+                    </p>
+                    <p class="mt-4">
+                        Contamos con el servicio de atención al rubro, lo cual te brinda toda  nuestra disponibilidad a la hora de consultar tus dudas y de  conocimientos para poder llevar tus obras a cabo sin tener problemas en  el funcionamiento de los equipos por una incorrecta instalacion. Ya sea  dimensionamiento de cañerías, dibujo en plano de las mismas hasta  listado de materiales necesarios.
+                    </p>
+                    <p class="mt-4">
+                        No dudes en consultarnos para poder ser parte de nuestro equipo de instaladores.
                     </p>
                     <v-row class="mt-12">
-                        <v-col cols="12" md="12">
-                            <v-btn color="primary" class="rounded-md" depressed target="_blank" href="https://wa.me/5491137827119?text=Hola%20Barrier!%20Necesito%20asesoramiento%20sobre%20https%3A%2F%2Fbarrierclima.com.ar%2F">Consultar por Whatsapp</v-btn>
+                        <v-col cols="12" md="6">
+                            <v-btn color="primary" class="rounded-md" depressed target="_blank" href="https://api.whatsapp.com/send?phone=5491137827119&text=HOLA%20Quiero%20asesoramientohttps://api.whatsapp.com/send?phone=5491137827119&text=HOLA%20Quiero%20asesoramiento">Whatsapp</v-btn>
                         </v-col>
-                        <v-col cols="12" md="12">
-                            <v-btn color="primary" class="rounded-md" depressed>Consultar por Email</v-btn>
+                        <v-col cols="12" md="6">
+                            <v-btn color="primary" class="rounded-md"  v-if="false" depressed>Consultar por Email</v-btn>
                         </v-col>
                     </v-row>
                 </v-col>

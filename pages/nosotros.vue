@@ -56,7 +56,7 @@
             </v-row>
         </v-container>
         <v-sheet class="mb-10">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3905.9759139641815!2d-58.62825243461283!3d-34.590981212096644!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcb96437203d5b%3A0xf27ce8e2b7d73176!2sGral.%20Bernardo%20O&#39;Higgins%20910%2C%20B1686%20Hurlingham%2C%20Provincia%20de%20Buenos%20Aires!5e0!3m2!1ses-419!2sar!4v1737403199994!5m2!1ses-419!2sar" width="100%" height="340" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3284.516046533934!2d-58.62868412341807!3d-34.59111015683401!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcb93ef97f04ef%3A0x2a941ea29544a63!2sBarrier%20Clima%20S.R.L.!5e0!3m2!1ses-419!2sar!4v1737739193440!5m2!1ses-419!2sar" width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </v-sheet>
             <!-- <v-container fluid class="container-inner mt-12">
             <v-row>

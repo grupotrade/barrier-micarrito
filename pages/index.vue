@@ -25,7 +25,7 @@
                             <div
                                 :style="{ backgroundColor: getColor(step.number), borderRadius: '50%', width: '70px', height: '70px', margin: '0 auto' }">
                             </div>
-                            <p class="text-center mt-10">{{ step.number }}
+                            <p class="text-center mt-10 mx-4">{{ step.number }}
                                 <br> {{ step.text }}
                             </p>
                         </v-col>
@@ -57,7 +57,7 @@
                 </v-col>
             </v-row>
         </v-container>
-        <v-container fluid class="container-inner mt-12">
+        <v-container fluid class="container-inner mt-12 pb-12">
             <h3 class="semi pb-12">Trabajamos con marcas líderes en el Mercado.</h3>
             <client-only>
                 <BrandsSlider />

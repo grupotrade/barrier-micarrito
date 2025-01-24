@@ -3,7 +3,7 @@
         <v-container fluid class="container-inner mt-12 pt-12 pb-12">
             <v-row>
                 <v-col cols="12" md="4">
-                    <h3 class="semi">Comercios</h3>
+                    <h2 class="semi">Comercios</h2>
                     <v-divider class="line-title primary" ></v-divider>
                     <p class="mt-4">
                         Tu negocio, también nos importa.
@@ -12,18 +12,21 @@
             </v-row>
             <v-row class="mt-12">
                 <v-col cols="12" md="8">
-                    <v-img src="./img/services/comercial.jpg"></v-img>
+                    <v-img height="520px" cover src="./img/services/comercial.jpg"></v-img>
                 </v-col>
                 <v-col cols="12" md="4">
-                    <p class="mt-8">
-                        Ya sea que necesitas refrigerar tu oficina por comodidad y confort, tu  local de venta al publico para que tus clientes se sientan a gusto, o  porque los productos que se venden necesitan un tipo de temperatura  particular, podes contar con nosotros para asesorarte y asi brindarte la mejor solución para las necesidades de tu emprendimiento. Tambien contamos con el servicio de refrigeración de sala de servidores  asi como tambien de equipos electrónicos que necesiten temperaturas  especificas para su correcto funcionamiento, ya que una avería en este  tipo de equipos genera tanto daños materiales como daños por falta de  producción.
+                    <p class="mt-4">
+                        Ya sea que necesitas refrigerar tu oficina por comodidad y confort, tu  local de venta al publico para que tus clientes se sientan a gusto, o  porque los productos que se venden necesitan un tipo de temperatura  particular, podes contar con nosotros para asesorarte y asi brindarte la mejor solución para las necesidades de tu emprendimiento. 
+                    </p>
+                    <p class="mt-4">
+                        También contamos con el servicio de refrigeración de sala de servidores  asi como tambien de equipos electrónicos que necesiten temperaturas  especificas para su correcto funcionamiento, ya que una avería en este  tipo de equipos genera tanto daños materiales como daños por falta de  producción.
                     </p>
                     <v-row class="mt-12">
-                        <v-col cols="12" md="12">
-                            <v-btn color="primary" class="rounded-md" depressed target="_blank" href="https://wa.me/5491137827119?text=Hola%20Barrier!%20Necesito%20asesoramiento%20sobre%20https%3A%2F%2Fbarrierclima.com.ar%2F">Consultar por Whatsapp</v-btn>
+                        <v-col cols="12" md="6">
+                            <v-btn color="primary" class="rounded-md" depressed target="_blank" href="https://wa.me/5491137827119?text=Hola%20Barrier!%20Necesito%20asesoramiento%20sobre%20https%3A%2F%2Fbarrierclima.com.ar%2F">Consultar porWhatsapp</v-btn>
                         </v-col>
-                        <v-col cols="12" md="12">
-                            <v-btn color="primary" class="rounded-md" depressed>Consultar por Email</v-btn>
+                        <v-col cols="12" md="6">
+                            <v-btn color="primary" class="rounded-md" depressed v-if="false">Consultar por Email</v-btn>
                         </v-col>
                     </v-row>
                 </v-col>
