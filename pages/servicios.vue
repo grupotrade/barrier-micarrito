@@ -7,10 +7,10 @@
             <v-row>
                 <v-col cols="12" md="6">
                     <h3 class="semi">Climatización a la medida de tus necesidades</h3>
-                    <p>
+                    <h5 class="mt-4">
                         Nos adaptamos al tipo de proyecto que estés buscando, brindando
                         soluciones confiables para cada tipo de necesidad.
-                    </p>
+                    </h5>
                 </v-col>
 
             </v-row>

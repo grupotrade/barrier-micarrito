@@ -5,9 +5,9 @@
                 <v-col cols="12" md="5">
                     <h2 class="semi">Comercios</h2>
                     <v-divider class="line-title primary" ></v-divider>
-                    <p class="mt-4">
+                    <h5 class="mt-4">
                         Tu negocio, también nos importa.
-                    </p>
+                    </h5>
                 </v-col>
             </v-row>
             <v-row class="mt-12">

@@ -21,8 +21,8 @@
                 </v-col>
                 <v-col>
                     <v-row justify="center">
-                        <v-col class="pt-4" v-for="step in steps" :key="step.number">
-                            <div
+                        <v-col class="pt-12" v-for="step in steps" :key="step.number">
+                            <div class="pt-6"
                                 :style="{ backgroundColor: getColor(step.number), borderRadius: '50%', width: '70px', height: '70px', margin: '0 auto' }">
                             </div>
                             <div class="text-center mt-12 mx-1">
