@@ -1,8 +1,8 @@
 <template>
     <v-sheet>
         <v-container fluid class="container-inner mt-12 pt-12 pb-12">
-            <v-row>
-                <v-col cols="12" md="4">
+            <v-row class="mt-8">
+                <v-col cols="12" md="5">
                     <h2 class="semi">Comercios</h2>
                     <v-divider class="line-title primary" ></v-divider>
                     <p class="mt-4">
@@ -12,7 +12,7 @@
             </v-row>
             <v-row class="mt-12">
                 <v-col cols="12" md="8">
-                    <v-img height="520px" cover src="./img/services/comercial.jpg"></v-img>
+                    <v-img height="500px" cover src="./img/services/comercial.jpg" class="mr-12"></v-img>
                 </v-col>
                 <v-col cols="12" md="4">
                     <p class="mt-4">
@@ -23,10 +23,16 @@
                     </p>
                     <v-row class="mt-12">
                         <v-col cols="12" md="6">
-                            <v-btn color="primary" class="rounded-md" depressed target="_blank" href="https://wa.me/5491137827119?text=Hola%20Barrier!%20Necesito%20asesoramiento%20sobre%20https%3A%2F%2Fbarrierclima.com.ar%2F">Consultar porWhatsapp</v-btn>
+                            <v-btn color="primary" class="rounded-md" :outlined="!isHovered.whatsapp"
+                                :depressed="isHovered.whatsapp"
+                                @mouseover="isHovered.whatsapp = true"
+                                @mouseleave="isHovered.whatsapp = false" target="_blank" href="https://wa.me/5491137827119?text=Hola%20Barrier!%20Necesito%20asesoramiento%20sobre%20https%3A%2F%2Fbarrierclima.com.ar%2F">Consultar por Whatsapp</v-btn>
                         </v-col>
                         <v-col cols="12" md="6">
-                            <v-btn color="primary" class="rounded-md" depressed v-if="false">Consultar por Email</v-btn>
+                            <v-btn color="primary" class="rounded-md" :outlined="!isHovered.email"
+                                :depressed="isHovered.email"
+                                @mouseover="isHovered.email = true"
+                                @mouseleave="isHovered.email = false" v-if="false">Consultar por Email</v-btn>
                         </v-col>
                     </v-row>
                 </v-col>
@@ -40,7 +46,10 @@
 export default {
     data() {
         return {
-
+            isHovered: {
+                whatsapp: false,
+                email: false,
+            }
         }
     }
 

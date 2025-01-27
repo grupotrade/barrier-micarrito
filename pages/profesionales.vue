@@ -1,7 +1,7 @@
 <template>
     <v-sheet>
         <v-container fluid class="container-inner mt-12 pt-12 pb-12">
-            <v-row>
+            <v-row class="mt-8">
                 <v-col cols="12" md="7">
                     <h2 class="semi">Profesionales de Obra</h2>
                     <v-divider class="line-title primary" ></v-divider>
@@ -12,7 +12,7 @@
             </v-row>
             <v-row class="mt-12">
                 <v-col cols="12" md="8">
-                    <v-img height="520px" cover src="./img/services/profesionales.jpg"></v-img>
+                    <v-img height="500px" cover src="./img/services/profesionales.jpg" class="mr-12"></v-img>
                 </v-col>
                 <v-col cols="12" md="4">
                     <p class="mt-4">
@@ -26,10 +26,16 @@
                     </p>
                     <v-row class="mt-12">
                         <v-col cols="12" md="6">
-                            <v-btn color="primary" class="rounded-md" depressed target="_blank" href="https://api.whatsapp.com/send?phone=5491137827119&text=HOLA%20Quiero%20asesoramientohttps://api.whatsapp.com/send?phone=5491137827119&text=HOLA%20Quiero%20asesoramiento">Whatsapp</v-btn>
+                            <v-btn color="primary" class="rounded-md" :outlined="!isHovered.whatsapp"
+                                :depressed="isHovered.whatsapp"
+                                @mouseover="isHovered.whatsapp = true"
+                                @mouseleave="isHovered.whatsapp = false" target="_blank" href="https://api.whatsapp.com/send?phone=5491137827119&text=HOLA%20Quiero%20asesoramientohttps://api.whatsapp.com/send?phone=5491137827119&text=HOLA%20Quiero%20asesoramiento">Consultar por Whatsapp</v-btn>
                         </v-col>
                         <v-col cols="12" md="6">
-                            <v-btn color="primary" class="rounded-md"  v-if="false" depressed>Consultar por Email</v-btn>
+                            <v-btn color="primary" class="rounded-md" :outlined="!isHovered.email"
+                                :depressed="isHovered.email"
+                                @mouseover="isHovered.email = true"
+                                @mouseleave="isHovered.email = false" v-if="false">Consultar por Email</v-btn>
                         </v-col>
                     </v-row>
                 </v-col>
@@ -43,7 +49,10 @@
 export default {
     data() {
         return {
-
+            isHovered: {
+                whatsapp: false,
+                email: false,
+            }
         }
     }
 

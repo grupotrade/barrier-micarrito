@@ -2,7 +2,7 @@
      
             <v-row justify="center">
                 <v-col cols="12" md="4">
-                    <v-card @click="navigateTo('/hogares')" class="primary">
+                    <v-card @click="navigateTo('/hogares')" class="black">
                         <v-img src="/img/hogares.jpg" class="d-flex justify-center align-center image-filter">
                             <div class="pl-12">
                             <h3 class="white--text title-hover mt-10 title-hover">HOGARES</h3>
@@ -13,7 +13,7 @@
                     </v-card>
                 </v-col>
                 <v-col cols="12" md="4">
-                    <v-card @click="navigateTo('comercial')" class="primary">
+                    <v-card @click="navigateTo('comercial')" class="black">
                         <v-img src="/img/comercial.jpg" class="d-flex justify-center align-center image-filter">
                             <div class="pl-12">
                             <h3 class="white--text title-hover mt-10 title-hover">COMERCIAL</h3>
@@ -24,7 +24,7 @@
                     </v-card>
                 </v-col>
                 <v-col cols="12" md="4">
-                    <v-card @click="navigateTo('profesionales')" class="primary">
+                    <v-card @click="navigateTo('profesionales')" class="black">
                         <v-img src="/img/profesionales.jpg" class="d-flex justify-center align-center image-filter">
                             <div class="pl-12"> 
                             <h3 class="white--text title-hover mt-10 title-hover">PROFESIONALES DE OBRA</h3>
