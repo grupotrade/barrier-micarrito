@@ -31,7 +31,7 @@ export default {
                 message: '',
             },
             isHovered: false,
-            email: 'ivanpuglia@gmail.com'
+            email: 'info@barrierclima.com.ar'
         }
     },
     methods: {
