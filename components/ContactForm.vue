@@ -1,11 +1,11 @@
 <template>
     <v-form v-model="valid">
-        <v-text-field label="Nombre" v-model="contact.name" required :rules="fieldRules"></v-text-field>
-        <v-text-field label="E-mail" v-model="contact.email" required :rules="emailRules"></v-text-field>
-        <v-text-field label="Empresa" v-model="contact.work" required:rules="fieldRules"></v-text-field>
-        <v-text-field label="Celular" v-model="contact.phone" required :rules="fieldRules"></v-text-field>
+        <v-text-field label="Nombre" v-model="contact.name" required :rules="rulesGlobal.required"></v-text-field>
+        <v-text-field label="E-mail" v-model="contact.email" required :rules="rulesGlobal.email"></v-text-field>
+        <v-text-field label="Empresa" v-model="contact.work" required :rules="rulesGlobal.required"></v-text-field>
+        <v-text-field label="Celular" v-model="contact.phone" ></v-text-field>
         <v-textarea label="¿Qué tipo de servicio necesitas?" v-model="contact.message" required
-            :rules="fieldRules"></v-textarea>
+            :rules="rulesGlobal.required"></v-textarea>
         <v-btn color="primary" rounded size="large" :outlined="!isHovered"
                                 :depressed="isHovered"
                                 @mouseover="isHovered = true"
