@@ -41,8 +41,8 @@ export default {
             mailcollection.add({
                 to: this.email,
                 message: {
-                    subject: 'Contacto de ' + this.contact.name,
-                    html: '<p>Nombre: ' + this.contact.name + '</p><p>E-mail: ' + this.contact.email + '</p><p>Empresa: ' + this.contact.work + '</p><p>Celular: ' + this.contact.phone + '</p><p>Mensaje: ' + this.contact.message + '</p>'
+                    subject: 'Contacto desde el sitio web de ' + this.contact.email,
+                    html: '<p>Recibiste un nuevo contacto desde el sitio web de:</p><p>Nombre: ' + this.contact.name + '</p><p>E-mail: ' + this.contact.email + '</p><p>Empresa: ' + this.contact.work + '</p><p>Celular: ' + this.contact.phone + '</p><p>Mensaje: ' + this.contact.message + '</p>'
                 }
             })
             this.contact = {
