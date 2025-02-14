@@ -1,5 +1,5 @@
 <template>
-  <v-sheet class="white pb-12">
+  <v-sheet class="white pb-6">
   <v-row>
     <v-col v-for="brand in brands" :key="brand.id" cols="12" md="3" class="d-flex justify-center align-center">
       <img :src="getImageUrl(brand.image)" class="mx-7" />

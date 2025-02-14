@@ -35,13 +35,13 @@
             </v-row>
         </v-container>
        <CommonContactBanner class="my-6" />
-        <v-container fluid class="container-inner mt-12 pb-12">
+        <v-container fluid class="container-inner mt-12 pb-4">
             <h3 class="semi pt-10 pb-12">Trabajamos con marcas líderes en el Mercado.</h3>
             <client-only>
                 <BrandsSlider />
             </client-only>
         </v-container>
-
+        <CommonTestimonials class="mb-6" />
         
 
     </v-sheet>

@@ -38,7 +38,7 @@
 
         </v-app-bar>
         
-        <v-app-bar app fixed color="app-bar-site" height="78" dark v-else>
+        <v-app-bar app fixed color="app-bar-site" height="78" dark  class="mt-8" v-else>
             <CommonLogoH :width="150" />
             <v-spacer></v-spacer>
             <!-- <v-btn text class="mx-2" @click="openCart"><v-icon class="secondary--text">mdi-cart-outline</v-icon><v-badge

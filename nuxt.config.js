@@ -142,6 +142,12 @@ export default {
   publicRuntimeConfig: {
     storage: process.env.STORAGE_URL
   },
+  serverMiddleware: [
+    '~/api/index.js'
+  ],
+  env: {
+    GOOGLE_MAPS_API_KEY: process.env.GOOGLE_MAPS_API_KEY
+  },
     // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     postcss: null

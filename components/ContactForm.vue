@@ -30,6 +30,7 @@ export default {
                 phone: '',
                 message: '',
             },
+            valid: false,
             isHovered: false,
             email: 'info@barrierclima.com.ar'
         }

@@ -38,17 +38,7 @@
         <v-sheet class="mb-10">
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3284.516046533934!2d-58.62868412341807!3d-34.59111015683401!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcb93ef97f04ef%3A0x2a941ea29544a63!2sBarrier%20Clima%20S.R.L.!5e0!3m2!1ses-419!2sar!4v1737739193440!5m2!1ses-419!2sar" width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </v-sheet>
-            <!-- <v-container fluid class="container-inner mt-12">
-            <v-row>
-                    <v-col cols="12" md="4">
-                        <h3>Testimonios</h3>
-                    <v-divider class="line-title primary" ></v-divider>
-                    <p class="mt-4">
-                       
-                    </p>
-                </v-col>
-            </v-row>
-        </v-container> -->
+            <CommonTestimonials />
         <v-container fluid class="container-inner mt-12 pb-12">
             <v-row>
                     <v-col cols="12" md="4">
@@ -75,8 +65,7 @@ export default {
                 { src: './img/nosotros/1.jpg' },
                 { src: './img/nosotros/2.jpg' },
                 { src: './img/nosotros/3.jpg' },
-            ]
-
+            ],
         }
     },
     computed: {
@@ -84,9 +73,6 @@ export default {
             return this.$store.state.authUser;
         }
     },
-    methods: {
-        
-    }
 }
 </script>
 
@@ -94,4 +80,5 @@ export default {
 .input-products.v-input--dense.v-text-field--outlined>.v-input__control>.v-input__slot {
     min-height: 28px !important;
 }
+
 </style>
