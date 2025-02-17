@@ -123,10 +123,7 @@ export default {
         performance: true,
         analytics: true,
         database: true,
-        functions: {
-            location: 'us-central1',
-            emulatorPort: 5001,
-        }
+        functions: true
     }
   },vuetify: {
     customVariables: ['~/assets/variables.scss'],

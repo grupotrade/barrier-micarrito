@@ -2,43 +2,29 @@ import { onRequest } from 'firebase-functions/v2/https';
 import axios from 'axios';
 
 export const api = onRequest({ 
-    cors: [
-        'https://barrierclima.com.ar',
-        'https://www.barrierclima.com.ar',
-        'http://localhost:3000'
-    ],
+    cors: true,
     maxInstances: 10 
 }, async (req, res) => {
-    // Log para debugging
-    console.log('Recibida petición para:', req.path);
-    console.log('Query params:', req.query);
-
-    const placeId = req.query.placeId;
-    const GOOGLE_API_KEY = process.env.GOOGLE_MAPS_API_KEY;
-
-    if (!GOOGLE_API_KEY) {
-        console.error('Error: API key no configurada');
-        return res.status(500).json({
-            error: 'API key no configurada'
-        });
-    }
-
     try {
+        // Log de todo lo que recibimos
+        console.log('Cuerpo completo:', JSON.stringify(req.body, null, 2));
+        
+        // Obtener datos del body para httpsCallable
+        const { placeId } = req.body.data || {};
+        
+        // Usar una API key hardcodeada temporalmente para pruebas
+        const GOOGLE_API_KEY = 'AIzaSyBCkA9pwtB9L1DhfsB_VmvItmlQfQfizmI';
+
+        console.log('PlaceId:', placeId);
+        console.log('API Key presente:', !!GOOGLE_API_KEY);
+
         const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=reviews&language=es&key=${GOOGLE_API_KEY}`;
-        console.log('Consultando a Google Places API');
         
         const response = await axios.get(url);
-        console.log('Respuesta de Google:', response.status);
-        
-        // Log de la respuesta completa para debugging
-        console.log('Datos de Google:', JSON.stringify(response.data, null, 2));
+        console.log('Status de Google:', response.status);
 
         if (!response.data.result) {
-            console.log('No se encontraron reviews');
-            return res.json({ 
-                reviews: [],
-                message: 'No se encontraron reseñas'
-            });
+            return res.json({ reviews: [] });
         }
 
         const reviews = response.data.result.reviews ? 
@@ -51,21 +37,16 @@ export const api = onRequest({
                 relative_time: review.relative_time_description
             })) : [];
 
-        console.log(`Enviando ${reviews.length} reseñas`);
-        
-        return res.json({ 
-            reviews,
-            message: `Se encontraron ${reviews.length} reseñas`
+        return res.json({
+            data: { reviews }
         });
     } catch (error) {
         console.error('Error completo:', error);
-        console.error('Stack:', error.stack);
-        
         return res.status(500).json({
-            error: 'Error al obtener reseñas',
-            message: error.message,
-            details: error.response ? error.response.data : null,
-            stack: error.stack
+            data: {
+                error: 'Error al obtener reseñas',
+                message: error.message
+            }
         });
     }
 });

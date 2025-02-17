@@ -61,39 +61,16 @@ export default {
         async fetchGoogleReviews() {
             try {
                 console.log('Iniciando fetch de reseñas...');
-                const response = await fetch(
-                    `/api/google-reviews?placeId=${this.placeId}`,
-                    {
-                        method: 'GET',
-                        headers: {
-                            'Accept': 'application/json',
-                            'Content-Type': 'application/json'
-                        }
-                    }
-                );
+                const getReviews = this.$fire.functions.httpsCallable('api');
+                const result = await getReviews({ 
+                    placeId: this.placeId
+                });
                 
-                // Log para debugging
-                console.log('Status:', response.status);
-                console.log('Headers:', Object.fromEntries(response.headers));
+                console.log('Respuesta recibida:', result.data);
                 
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                
-                const text = await response.text(); // Primero obtenemos el texto
-                console.log('Response text:', text); // Log del texto recibido
-                
-                try {
-                    const data = JSON.parse(text); // Intentamos parsearlo como JSON
-                    console.log('Datos parseados:', data);
-                    if (data.reviews && data.reviews.length > 0) {
-                        console.log(`Encontradas ${data.reviews.length} reseñas`);
-                        this.googleReviews = data.reviews;
-                    } else {
-                        console.log('No se encontraron reseñas en la respuesta');
-                    }
-                } catch (parseError) {
-                    console.error('Error parsing JSON:', parseError);
+                if (result.data.reviews && result.data.reviews.length > 0) {
+                    this.googleReviews = result.data.reviews;
+                } else {
                     this.googleReviews = [];
                 }
             } catch (error) {
