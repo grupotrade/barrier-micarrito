@@ -5,8 +5,18 @@ const axios = require('axios');
 
 const app = express();
 
-// Habilitar CORS
-app.use(cors({ origin: true }));
+// Middleware personalizado para CORS
+app.use((req, res, next) => {
+    res.set('Access-Control-Allow-Origin', '*');
+    res.set('Access-Control-Allow-Methods', 'GET, OPTIONS');
+    res.set('Access-Control-Allow-Headers', 'Content-Type');
+    
+    if (req.method === 'OPTIONS') {
+        res.status(204).send('');
+        return;
+    }
+    next();
+});
 
 app.get('/google-reviews', async (req, res) => {
     const placeId = req.query.placeId;

@@ -61,7 +61,15 @@ export default {
         async fetchGoogleReviews() {
             try {
                 const response = await fetch(
-                    `https://us-central1-barrierclima.cloudfunctions.net/api/google-reviews?placeId=${this.placeId}`
+                    `https://us-central1-barrierclima.cloudfunctions.net/api/google-reviews?placeId=${this.placeId}`,
+                    {
+                        method: 'GET',
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json',
+                        },
+                        mode: 'cors'
+                    }
                 );
                 const data = await response.json();
                 this.googleReviews = data.reviews;
