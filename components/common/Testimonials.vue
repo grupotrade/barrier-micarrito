@@ -61,7 +61,7 @@ export default {
         async fetchGoogleReviews() {
             try {
                 const response = await fetch(
-                    `https://us-central1-barrierclima.cloudfunctions.net/api/google-reviews?placeId=${this.placeId}`,
+                    `/api/google-reviews?placeId=${this.placeId}`,
                     {
                         method: 'GET',
                         headers: {

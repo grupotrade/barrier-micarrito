@@ -1,36 +1,38 @@
 import { onRequest } from 'firebase-functions/v2/https';
-import express from 'express';
-import cors from 'cors';
 import axios from 'axios';
 
-const app = express();
+export const api = onRequest({ 
+    cors: [
+        'https://barrierclima.com.ar',
+        'https://www.barrierclima.com.ar',
+        'http://localhost:3000'
+    ],
+    maxInstances: 10 
+}, async (req, res) => {
+    // Verificar que sea una petición GET
+    if (req.method !== 'GET') {
+        res.status(405).send('Método no permitido');
+        return;
+    }
 
-// Configuración básica de CORS
-app.use(cors({ origin: true }));
-
-app.get('/google-reviews', async (req, res) => {
     const placeId = req.query.placeId;
-    // Obtener la API key del secreto
     const GOOGLE_API_KEY = process.env.GOOGLE_MAPS_API_KEY;
 
     if (!GOOGLE_API_KEY) {
         console.error('Error: API key no configurada');
-        return res.status(500).json({
+        res.status(500).json({
             error: 'API key no configurada'
         });
+        return;
     }
 
     try {
         const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=reviews&language=es&key=${GOOGLE_API_KEY}`;
         const response = await axios.get(url);
 
-        // Log para debugging
-        console.log('Google API Response:', response.status);
-
         if (!response.data.result) {
-            return res.json({
-                reviews: []
-            });
+            res.json({ reviews: [] });
+            return;
         }
 
         const reviews = response.data.result.reviews ? 
@@ -53,10 +55,3 @@ app.get('/google-reviews', async (req, res) => {
         });
     }
 });
-
-// Configuración más permisiva para la función
-export const api = onRequest({
-    cors: true,
-    maxInstances: 10,
-    invoker: 'public'
-}, app);
