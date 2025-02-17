@@ -60,7 +60,9 @@ export default {
     methods: {
         async fetchGoogleReviews() {
             try {
-                const response = await fetch(`/api/google-reviews?placeId=${this.placeId}`);
+                const response = await fetch(
+                    `https://us-central1-barrierclima.cloudfunctions.net/api/google-reviews?placeId=${this.placeId}`
+                );
                 const data = await response.json();
                 this.googleReviews = data.reviews;
             } catch (error) {
