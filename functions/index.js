@@ -5,34 +5,12 @@ import axios from 'axios';
 
 const app = express();
 
-// Configuración más específica de CORS
-const corsConfig = {
-    origin: [
-        'http://localhost:3000',
-        'https://barrierclima.com.ar',
-        'https://www.barrierclima.com.ar'
-    ],
-    methods: ['GET', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    credentials: true,
-    optionsSuccessStatus: 204
-};
-
-app.use(cors(corsConfig));
-
-// Middleware adicional para asegurar headers CORS
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Methods', 'GET, OPTIONS');
-    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-    if (req.method === 'OPTIONS') {
-        return res.status(204).send('');
-    }
-    next();
-});
+// Configuración básica de CORS
+app.use(cors({ origin: true }));
 
 app.get('/google-reviews', async (req, res) => {
     const placeId = req.query.placeId;
+    // Obtener la API key del secreto
     const GOOGLE_API_KEY = process.env.GOOGLE_MAPS_API_KEY;
 
     if (!GOOGLE_API_KEY) {
@@ -45,6 +23,9 @@ app.get('/google-reviews', async (req, res) => {
     try {
         const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=reviews&language=es&key=${GOOGLE_API_KEY}`;
         const response = await axios.get(url);
+
+        // Log para debugging
+        console.log('Google API Response:', response.status);
 
         if (!response.data.result) {
             return res.json({
@@ -64,7 +45,7 @@ app.get('/google-reviews', async (req, res) => {
 
         res.json({ reviews });
     } catch (error) {
-        console.error('Error:', error);
+        console.error('Error completo:', error);
         res.status(500).json({
             error: 'Error al obtener reseñas',
             message: error.message,
@@ -73,8 +54,9 @@ app.get('/google-reviews', async (req, res) => {
     }
 });
 
-// Exportar con configuración explícita de CORS
+// Configuración más permisiva para la función
 export const api = onRequest({
     cors: true,
-    maxInstances: 10
+    maxInstances: 10,
+    invoker: 'public'
 }, app);
