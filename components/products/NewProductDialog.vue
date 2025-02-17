@@ -56,13 +56,13 @@
                                 </v-file-input>
                                 <v-row dense>
                                     <v-col cols="3">
-                                        <span v-if="progress > 0 && progress < 100">Subiendo archivo...</span>
-                                        <span v-if="progress == 100" class="success--text">Archivos subido</span>
+                                        <span v-if="progressImages > 0 && progressImages < 100">Subiendo archivo...</span>
+                                        <span v-if="progressImages == 100" class="success--text">Archivo subido</span>
                                     </v-col>
                                     <v-col>
-                                        <v-progress-linear class="my-3" :value="progress" :buffer-value="100"
-                                            :color="(progress == 100) ? 'success' : 'primary'"
-                                            v-if="progress > 0 && progress < 100"></v-progress-linear>
+                                        <v-progress-linear class="my-3" :value="progressImages" :buffer-value="100"
+                                            :color="(progressImages == 100) ? 'success' : 'primary'"
+                                            v-if="progressImages > 0 && progressImages < 100"></v-progress-linear>
                                     </v-col>
                                 </v-row>
                                 <v-row dense v-if="product.imagePrincipal">
@@ -84,13 +84,13 @@
                                 </v-file-input>
                                 <v-row dense>
                                     <v-col cols="3">
-                                        <span v-if="progress > 0 && progress < 100">Subiendo archivos...</span>
-                                        <span v-if="progress == 100" class="success--text">Archivos subidos</span>
+                                        <span v-if="progressImages > 0 && progressImages < 100">Subiendo archivos...</span>
+                                        <span v-if="progressImages == 100" class="success--text">Archivos subidos</span>
                                     </v-col>
                                     <v-col>
-                                        <v-progress-linear class="my-3" :value="progress" :buffer-value="100"
-                                            :color="(progress == 100) ? 'success' : 'primary'"
-                                            v-if="progress > 0 && progress < 100"></v-progress-linear>
+                                        <v-progress-linear class="my-3" :value="progressImages" :buffer-value="100"
+                                            :color="(progressImages == 100) ? 'success' : 'primary'"
+                                            v-if="progressImages > 0 && progressImages < 100"></v-progress-linear>
                                     </v-col>
                                 </v-row>
                                 <v-row dense>
@@ -104,6 +104,27 @@
                                 </v-row>
                             </v-col>
                         </v-row>
+                        <h5 class="body-1 pa-3">Archivos descargables</h5>
+                        <v-row dense>
+                           
+                            <v-col cols="6">
+                              
+                                <v-file-input dense v-model="product.files.manual" placeholder="Seleccione su archivo" label="Manual"
+                                    accept="application/pdf" color="secondary" background-color="foreground" outlined
+                                    prepend-icon="mdi-paperclip" @change="onFileManualPicked"
+                                    :disabled="processing">
+                                </v-file-input>
+                                </v-col>
+                                <v-col cols="6">
+                              
+                              <v-file-input dense v-model="product.files.folleto" placeholder="Seleccione su archivo" label="Folleto"
+                                  accept="application/pdf" color="secondary" background-color="foreground" outlined
+                                  prepend-icon="mdi-paperclip" @change="onFileFolletoPicked"
+                                  :disabled="processing">
+                              </v-file-input>
+                              </v-col>
+                                </v-row>
+
                         <h5 class="body-1 pa-3">Relacionar productos</h5>
                         <v-row dense>
                             <v-col>
@@ -177,7 +198,8 @@ export default {
             validProduct: false,
             processing: false,
             fileURL: null,
-            progress: 0,
+            progressFiles: 0,
+            progressImages: 0,
             filePrincipal: null,
             files: null,
             images: [],
@@ -189,8 +211,11 @@ export default {
                 category: null,
                 description: '',
                 images: [],
-                imagePrincipal: null
-
+                imagePrincipal: null,
+                files: {
+                    manual: null,
+                    folleto: null
+                }
             },
             relations: {
                 a: null,
@@ -281,6 +306,7 @@ export default {
                     name: this.user.displayName,
                     id: this.user.uid
                 },
+                files: this.product.files
             },)
             this.product = {
                 name: '',
@@ -289,7 +315,11 @@ export default {
                 description: '',
                 details: '',
                 images: [],
-                imagePrincipal: null
+                imagePrincipal: null,
+                files: {
+                    manual: null,
+                    folleto: null
+                }
             }
             this.relationProducts = []
             this.success = true
@@ -326,8 +356,8 @@ export default {
                 const progress = Math.round(
                     (snapshot.bytesTransferred / snapshot.totalBytes) * 100
                 );
-                this.progress = progress
-                this.progress = 0
+                this.progressImages = progress
+                this.progressImages = 0
             },
                 (error) => {
                     console.log(error);
@@ -353,8 +383,8 @@ export default {
                     const progress = Math.round(
                         (snapshot.bytesTransferred / snapshot.totalBytes) * 100
                     );
-                    this.progress = progress
-                    this.progress = 0
+                    this.progressImages = progress
+                    this.progressImages = 0
                 },
                     (error) => {
                         console.log(error);
@@ -370,6 +400,34 @@ export default {
 
             }
         },
+        async onFileManualPicked(file) {
+            this.product.files.manual = file
+            this.uploadFileToFirebase(file, 'manual')
+        },
+        async onFileFolletoPicked(file) {
+            this.product.files.folleto = file
+            this.uploadFileToFirebase(file, 'folleto')
+        },
+        async uploadFileToFirebase(file, type) {
+            this.processing = true
+            const filePath = `${Date.now()}-${file.name}`;
+            var storageRef = await this.$fire.storage.ref('products').child(filePath)
+            let uploadTask = storageRef.put(file)
+            uploadTask.on('state_changed', (snapshot) => {
+                const progress = Math.round(
+                    (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+                );
+                this.progressFiles = progress
+            })
+            uploadTask.then(
+                () => {
+                        uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+                            this.product.files[type] = downloadURL;
+                        })
+                        this.processing = false
+                }
+            )
+        },
         removeImage(image) {
             const indexOf = this.product.images.indexOf(image)
             if (indexOf > -1) {
@@ -382,34 +440,6 @@ export default {
         },
         removeImagePrincipal() {
             this.imagePrincipal = null
-        },
-        async fileInput(file) {
-            try {
-                if (file && file.name) {
-                    this.processingPdf = true;
-                    const fr = new FileReader();
-                    fr.readAsDataURL(file);
-                    fr.addEventListener("load", () => {
-                        // this is to load image on the UI
-                        // .. not related to file upload :)
-                        this.fileURL = fr.result;
-                    });
-                    const pdfData = new FormData();
-                    pdfData.append("pdf", this.product.pdf);
-                    const filePath = `${Date.now()}-${file.name}`;
-                    const metadata = {
-                        contentType: this.product.pdf.type
-                    };
-                    this.product.technicalFile = filePath
-                    await this.$fire.storage.ref('products')
-                        .child(filePath)
-                        .put(this.product.pdf, metadata);
-                }
-            } catch (e) {
-                console.error(e);
-            } finally {
-                this.processingPdf = false;
-            }
         }
     }
 }

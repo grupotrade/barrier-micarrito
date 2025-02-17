@@ -58,13 +58,13 @@
                                 </v-file-input>
                                 <v-row dense>
                                     <v-col cols="3">
-                                        <span v-if="progress > 0 && progress < 100">Subiendo archivo...</span>
-                                        <span v-if="progress == 100" class="success--text">Archivos subido</span>
+                                        <span v-if="progressImages > 0 && progressImages < 100">Subiendo archivo...</span>
+                                        <span v-if="progressImages == 100" class="success--text">Archivo subido</span>
                                     </v-col>
                                     <v-col>
-                                        <v-progress-linear class="my-3" :value="progress" :buffer-value="100"
-                                            :color="(progress == 100) ? 'success' : 'primary'"
-                                            v-if="progress > 0 && progress < 100"></v-progress-linear>
+                                        <v-progress-linear class="my-3" :value="progressImages" :buffer-value="100"
+                                            :color="(progressImages == 100) ? 'success' : 'primary'"
+                                            v-if="progressImages > 0 && progressImages < 100"></v-progress-linear>
                                     </v-col>
                                 </v-row>
                                 <v-row dense v-if="productEditable.imagePrincipal">
@@ -85,13 +85,13 @@
                                 </v-file-input>
                                 <v-row dense>
                                     <v-col cols="3">
-                                        <span v-if="progress > 0 && progress < 100">Subiendo archivos...</span>
-                                        <span v-if="progress == 100" class="success--text">Archivos subidos</span>
+                                        <span v-if="progressImages > 0 && progressImages < 100">Subiendo archivos...</span>
+                                        <span v-if="progressImages == 100" class="success--text">Archivos subidos</span>
                                     </v-col>
                                     <v-col>
-                                        <v-progress-linear class="my-3" :value="progress" :buffer-value="100"
-                                            :color="(progress == 100) ? 'success' : 'primary'"
-                                            v-if="progress > 0 && progress < 100"></v-progress-linear>
+                                        <v-progress-linear class="my-3" :value="progressImages" :buffer-value="100"
+                                            :color="(progressImages == 100) ? 'success' : 'primary'"
+                                            v-if="progressImages > 0 && progressImages < 100"></v-progress-linear>
                                     </v-col>
                                 </v-row>
                                 <v-row dense>
@@ -105,6 +105,26 @@
                                 </v-row>
                             </v-col>
                         </v-row>
+                        <h5 class="body-1 pa-3">Archivos descargables</h5>
+                        <v-row dense>
+                           
+                            <v-col cols="6">
+                              
+                                <v-file-input dense v-model="productEditable.files.manual" placeholder="Seleccione su archivo" label="Manual"
+                                    accept="application/pdf" color="secondary" background-color="foreground" outlined
+                                    prepend-icon="mdi-paperclip" @change="onFileManualPicked"
+                                    :disabled="processing">
+                                </v-file-input>
+                                </v-col>
+                                <v-col cols="6">
+                              
+                              <v-file-input dense v-model="productEditable.files.folleto" placeholder="Seleccione su archivo" label="Folleto"
+                                  accept="application/pdf" color="secondary" background-color="foreground" outlined
+                                  prepend-icon="mdi-paperclip" @change="onFileFolletoPicked"
+                                  :disabled="processing">
+                              </v-file-input>
+                              </v-col>
+                                </v-row>
                         <h5 class="body-1 pa-3">Relacionar productos</h5>
                         <v-row dense>
                             <v-col>
@@ -164,7 +184,8 @@ export default {
             validProduct: false,
             processing: false,
             fileURL: null,
-            progress: 0,
+            progressImages: 0,
+            progressFiles: 0,
             files: [],
             images: [],
             imagePrincipal: null,
@@ -205,7 +226,11 @@ export default {
                 background: []
             }], // dropdown with defaults from theme
             ["link"], ["clean"] // remove formatting button
-            ]
+            ],
+            files: {
+                manual: null,
+                folleto: null
+            }
         }
     },
     watch: {
@@ -246,7 +271,15 @@ export default {
         },
         productEditable: {
             get() {
-                return this.deepCopy(this.product)
+                const product = this.deepCopy(this.product);
+                // Asegurarse de que files existe
+                if (!product.files) {
+                    product.files = {
+                        manual: null,
+                        folleto: null
+                    };
+                }
+                return product;
             },
         }
     },
@@ -299,7 +332,8 @@ export default {
                 details: this.productEditable.details,
                 price: this.productEditable.price,
                 images: this.productEditable.images,
-                imagePrincipal: this.productEditable.imagePrincipal
+                imagePrincipal: this.productEditable.imagePrincipal,
+                files: this.productEditable.files
             }).then(result => {
                 this.$toasted.success('Producto editado', {
                     theme: "bubble",
@@ -347,8 +381,8 @@ export default {
                 const progress = Math.round(
                     (snapshot.bytesTransferred / snapshot.totalBytes) * 100
                 );
-                this.progress = progress
-                this.progress = 0
+                this.progressImages = progress
+                this.progressImages = 0
             },
                 (error) => {
                     console.log(error);
@@ -374,8 +408,8 @@ export default {
                     const progress = Math.round(
                         (snapshot.bytesTransferred / snapshot.totalBytes) * 100
                     );
-                    this.progress = progress
-                    this.progress = 0
+                    this.progressImages = progress
+                    this.progressImages = 0
                 },
                     (error) => {
                         console.log(error);
@@ -390,6 +424,35 @@ export default {
                 )
 
             }
+        },
+        async onFileManualPicked(file) {
+            this.productEditable.files.manual = file
+            this.uploadFileToFirebase(file, 'manual')
+        },
+        async onFileFolletoPicked(file) {
+            this.productEditable.files.folleto = file
+            this.uploadFileToFirebase(file, 'folleto')
+        },
+        async uploadFileToFirebase(file, type) {
+            this.processing = true
+            const filePath = `${Date.now()}-${file.name}`;
+            var storageRef = await this.$fire.storage.ref('products').child(filePath)
+            let uploadTask = storageRef.put(file)
+            uploadTask.on('state_changed', (snapshot) => {
+                const progress = Math.round(
+                    (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+                );
+                this.progressFiles = progress
+                this.progressFiles = 0
+            })
+            uploadTask.then(
+                () => {
+                    uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+                        this.productEditable.files[type] = downloadURL;
+                    })
+                    this.processing = false
+                }
+            )
         },
         removeImage(image) {
             const indexOf = this.productEditable.images.indexOf(image)

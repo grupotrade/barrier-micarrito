@@ -1,7 +1,6 @@
 <template>
 <v-dialog v-model="show" width="450px">
     <v-toolbar flat class="primary" dark dense>
-        Agregar producto al carrito
         <v-spacer></v-spacer>
         <v-tooltip bottom content-class="bottom">
             <template v-slot:activator="{ on }">
@@ -12,8 +11,20 @@
             <span>{{$t('close')}}</span>
         </v-tooltip>
     </v-toolbar>
-    <v-card flat tile class="primary px-2 pb-2">
-        <ProductsProductCard :product="product" />
+    <v-card flat tile class="px-2 pb-2">
+      
+        <v-img :src="product.imagePrincipal" height="350px" cover v-if="product.imagePrincipal"></v-img>
+        <div class="d-flex" v-if="product.images.length > 0">
+        <v-img :src="image" width="80px" height="80px" cover v-for="image in product.images" :key="image" class="mr-2"></v-img>
+        </div>
+       <h4 class="secondary_text--text">{{product.name}}</h4>
+       <p>Descripción:{{product.description}}</p>
+       <p>Precio: ${{product.price}}</p>
+       <p v-html="product.details"></p>
+       <v-btn @click="downloadFile(product.files.manual)" color="primary" small rounded depressed class="mr-2">Descargar manual</v-btn>
+       <v-btn @click="downloadFile(product.files.folleto)" color="primary" small rounded depressed>Descargar folleto</v-btn>
+       
+
     </v-card>
 </v-dialog>
 </template>
@@ -48,8 +59,8 @@ export default {
         },
     },
     methods: {
-         viewProduct(product) {
-            this.$emit('viewProduct', product)
+        downloadFile(file) {
+            window.open(file, '_blank')
         }
     }
 }
