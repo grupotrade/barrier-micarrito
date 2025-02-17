@@ -60,6 +60,7 @@ export default {
     methods: {
         async fetchGoogleReviews() {
             try {
+                console.log('Iniciando fetch de reseñas...');
                 const response = await fetch(
                     `/api/google-reviews?placeId=${this.placeId}`,
                     {
@@ -71,17 +72,33 @@ export default {
                     }
                 );
                 
+                // Log para debugging
+                console.log('Status:', response.status);
+                console.log('Headers:', Object.fromEntries(response.headers));
+                
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
                 
-                const data = await response.json();
-                if (data.reviews && data.reviews.length > 0) {
-                    this.googleReviews = data.reviews;
+                const text = await response.text(); // Primero obtenemos el texto
+                console.log('Response text:', text); // Log del texto recibido
+                
+                try {
+                    const data = JSON.parse(text); // Intentamos parsearlo como JSON
+                    console.log('Datos parseados:', data);
+                    if (data.reviews && data.reviews.length > 0) {
+                        console.log(`Encontradas ${data.reviews.length} reseñas`);
+                        this.googleReviews = data.reviews;
+                    } else {
+                        console.log('No se encontraron reseñas en la respuesta');
+                    }
+                } catch (parseError) {
+                    console.error('Error parsing JSON:', parseError);
+                    this.googleReviews = [];
                 }
             } catch (error) {
                 console.error('Error al obtener reseñas:', error);
-                this.googleReviews = []; // Aseguramos que el array esté vacío en caso de error
+                this.googleReviews = [];
             }
         }
     }
