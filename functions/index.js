@@ -1,19 +1,32 @@
-const functions = require('firebase-functions');
-const express = require('express');
-const cors = require('cors');
-const axios = require('axios');
+import { onRequest } from 'firebase-functions/v2/https';
+import express from 'express';
+import cors from 'cors';
+import axios from 'axios';
 
 const app = express();
 
-// Middleware personalizado para CORS
+// Configuración más específica de CORS
+const corsConfig = {
+    origin: [
+        'http://localhost:3000',
+        'https://barrierclima.com.ar',
+        'https://www.barrierclima.com.ar'
+    ],
+    methods: ['GET', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true,
+    optionsSuccessStatus: 204
+};
+
+app.use(cors(corsConfig));
+
+// Middleware adicional para asegurar headers CORS
 app.use((req, res, next) => {
-    res.set('Access-Control-Allow-Origin', '*');
-    res.set('Access-Control-Allow-Methods', 'GET, OPTIONS');
-    res.set('Access-Control-Allow-Headers', 'Content-Type');
-    
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET, OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
     if (req.method === 'OPTIONS') {
-        res.status(204).send('');
-        return;
+        return res.status(204).send('');
     }
     next();
 });
@@ -60,4 +73,8 @@ app.get('/google-reviews', async (req, res) => {
     }
 });
 
-exports.api = functions.https.onRequest(app);
+// Exportar con configuración explícita de CORS
+export const api = onRequest({
+    cors: true,
+    maxInstances: 10
+}, app);
