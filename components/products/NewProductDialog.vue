@@ -321,6 +321,8 @@ export default {
                     folleto: null
                 }
             }
+            this.filePrincipal = null
+            this.files = null
             this.imagePrincipal = null
             this.relationProducts = []
             this.success = true
