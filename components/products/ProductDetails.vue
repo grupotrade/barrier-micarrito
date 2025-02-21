@@ -46,7 +46,7 @@
                                 color="primary"
                                 outlined
                                 rounded 
-                                href="https://wa.me/tunumero"
+                                :href="'https://api.whatsapp.com/send/?phone=5491137827119&text=Hola+Barrier%21+Necesito+asesoramiento+sobre+'+this.product.name+'&type=phone_number&app_absent=0'"
                                 target="_blank"
                             >
                                 Consultar por Whatsapp
@@ -57,7 +57,7 @@
                                 color="primary"
                                 outlined
                                 rounded
-                                @click="consultarPorMail"
+                                @click="contactDialog = true"
                             >
                                 Consultar por Mail
                             </v-btn>
@@ -93,6 +93,13 @@
                 </v-col>
             </v-row>
         </v-card-text>
+        <v-dialog v-model="contactDialog" max-width="500">
+            <v-card>
+                <v-card-text>
+                    <ContactForm :product="product" />
+                </v-card-text>
+            </v-card>
+        </v-dialog>
     </v-card>
 
 </template>
@@ -113,7 +120,8 @@ export default {
             imageGallery: null,
             quantity: 1,
             carouselHeight: null,
-            imageLoading: true
+            imageLoading: true,
+            contactDialog: false
         }
     },
     methods: {

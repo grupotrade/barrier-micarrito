@@ -4,7 +4,8 @@
         <v-text-field label="E-mail" v-model="contact.email" required :rules="rulesGlobal.email"></v-text-field>
         <v-text-field label="Empresa" v-model="contact.work" required :rules="rulesGlobal.required"></v-text-field>
         <v-text-field label="Celular" v-model="contact.phone" ></v-text-field>
-        <v-textarea label="¿Qué tipo de servicio necesitas?" v-model="contact.message" required
+        <h5 v-if="product">Consultando sobre el producto {{ product.name }}</h5>
+        <v-textarea label="Mensaje" v-model="contact.message" required
             :rules="rulesGlobal.required"></v-textarea>
         <v-btn color="primary" rounded size="large" :outlined="!isHovered"
                                 :depressed="isHovered"
@@ -20,6 +21,13 @@
 </template>
 <script>
 export default {
+    props: {
+        product: {
+            type: Object,
+            required: false,
+            default: null
+        }
+    },
     data() {
         return {
             contactThanks: false,
@@ -39,13 +47,23 @@ export default {
         sendContact: function (e) {
             e.preventDefault()
             const mailcollection = this.$fire.firestore.collection('mails')
-            mailcollection.add({
-                to: this.email,
-                message: {
-                    subject: 'Contacto desde el sitio web de ' + this.contact.email,
-                    html: '<p>Recibiste un nuevo contacto desde el sitio web de:</p><p>Nombre: ' + this.contact.name + '</p><p>E-mail: ' + this.contact.email + '</p><p>Empresa: ' + this.contact.work + '</p><p>Celular: ' + this.contact.phone + '</p><p>Mensaje: ' + this.contact.message + '</p>'
-                }
-            })
+            if (this.product) {
+                mailcollection.add({
+                    to: this.email,
+                    message: {
+                        subject: 'Contacto sobre el producto ' + this.product.name + ' desde el sitio web de ' + this.contact.email,
+                        html: '<p>Recibiste un nuevo contacto sobre el producto ' + this.product.name + ' desde el sitio web de:</p><p>Nombre: ' + this.contact.name + '</p><p>E-mail: ' + this.contact.email + '</p><p>Empresa: ' + this.contact.work + '</p><p>Celular: ' + this.contact.phone + '</p><p>Mensaje: ' + this.contact.message + '</p> <p>Producto: ' + this.product.name + '</p>'
+                    }
+                })
+            } else {
+                mailcollection.add({
+                    to: this.email,
+                    message: {
+                        subject: 'Contacto desde el sitio web de ' + this.contact.email,
+                        html: '<p>Recibiste un nuevo contacto desde el sitio web de:</p><p>Nombre: ' + this.contact.name + '</p><p>E-mail: ' + this.contact.email + '</p><p>Empresa: ' + this.contact.work + '</p><p>Celular: ' + this.contact.phone + '</p><p>Mensaje: ' + this.contact.message + '</p>'
+                    }
+                })
+            }
             this.contact = {
                 name: '',
                 email: '',
