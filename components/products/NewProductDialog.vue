@@ -321,9 +321,9 @@ export default {
                     folleto: null
                 }
             }
+            this.imagePrincipal = null
             this.relationProducts = []
             this.success = true
-            this.images = []
             this.images = []
             this.show = false;
             this.$emit('finish', this.user)
@@ -341,7 +341,7 @@ export default {
             this.uploadImagesToFirebase()
         },
         async onImagePrincipalPicked(file) {
-            this.imagePrincipal = []
+            this.imagePrincipal = null
             this.imagePrincipal = file
             this.uploadImagePrincipalToFirebase()
         },

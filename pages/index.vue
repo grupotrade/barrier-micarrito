@@ -42,14 +42,14 @@
             </client-only>
         </v-container>
         <CommonTestimonials class="mb-6" />
-        <v-container fluid class="container-inner mt-12 pb-4">
+        <!-- <v-container fluid class="container-inner mt-12 pb-4" v-if="products.length > 0">
             <h3 class="text-center mt-3">Productos destacados</h3>
             <v-row dense justify="center">
                 <v-col cols="12">
                     <products-list :home="true" columns="4" />
                 </v-col>
             </v-row>
-        </v-container>
+        </v-container> -->
 
     </v-sheet>
 </template>
