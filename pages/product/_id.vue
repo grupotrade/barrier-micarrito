@@ -1,21 +1,16 @@
 <template>
-    <v-container fluid>
-        <header class="header-product">
-            <v-container class="container-header-product">
-                <h3 class="white--text" v-if="product">{{ product.name }}</h3>
-                <a href="/" class="white--text">
-                    SIM / Productos /</a>
-                <a :href="'/product_category/' + product.category" v-if="product" class="white--text">
-                    {{ getCategoryName(product.category) }}
-                </a>
-            </v-container>
-        </header>
-        <v-container class="container-product">
+     <v-sheet>
+        <v-sheet class="container-banner">
+            <BannersListBanners position="productos-header" />
+        </v-sheet>
+        <v-container fluid class="container-inner mt-12">
+
             <v-card flat tile :loading="product == null">
-                <ProductsProductDetails :product="product" @viewProduct="viewProduct" />
+                <ProductsProductDetails :product="product" showAddToCart="false" @viewProduct="viewProduct" />
             </v-card>
-        </v-container>
+
     </v-container>
+    </v-sheet>
 </template>
 
 <script>

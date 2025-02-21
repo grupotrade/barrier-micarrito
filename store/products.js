@@ -96,7 +96,23 @@ export const actions = {
                 })
                 commit('setProducts', result) 
             })
-    }
+    },
+    async fetchAllProducts({commit}) {
+        let ref = this.$fire.firestore.collection('products')
+            .where('deletedAt', '==', null)
+            .where('status', '==', 1)
+            .orderBy("date", "asc")
+            
+        ref.get().then(function (querySnapshot) {
+            const result = []
+            querySnapshot.forEach(function (doc) {
+                let data = doc.data()
+                data.id = doc.id
+                result.push(data)
+            })
+            commit('setProducts', result) 
+        })
+    },
 }
 export const mutations = {
     setProducts(state, payload) {

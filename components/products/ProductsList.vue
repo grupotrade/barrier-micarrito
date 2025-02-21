@@ -10,12 +10,10 @@
             <v-row dense v-if="!home">
                 <v-col cols="12" :lg="columns" class="mb-2" v-for="item in products" :key="item.id">
                     <ProductsProductCard :product="item" :category="getCategoryName(item.category)"
-                        @viewDetails="navigateProduct(item)" :showAdd="true" />
+                        @viewDetails="navigateProduct(item)" :showAdd="false" />
                 </v-col>
             </v-row>
         </v-skeleton-loader>
-        <ProductsViewProductDialog v-model="viewProductDialog" :product="productSelected" v-if="productSelected != null"
-            @viewProduct="viewProduct" />
     </v-container>
 </template>
 
@@ -35,7 +33,7 @@ export default {
         },
         columns: {
             type: String,
-            default: '3'
+            default: '4'
         }
     },
     data() {
@@ -65,7 +63,7 @@ export default {
             this.fetchProductsByCategory(this.category)
         }
         else {
-            this.fetchNonHomeProducts()
+            this.fetchAllProducts()
         }
 
     },
@@ -82,6 +80,7 @@ export default {
         },
         async fetchHomeProducts() {
             try {
+                this.setLoading(true);
                 await this.$store.dispatch('products/fetchHomeProducts');
             } catch (error) {
                 console.error("Error fetching products:", error);
@@ -89,9 +88,10 @@ export default {
                 this.setLoading(false);
             }
         },
-        async fetchNonHomeProducts() {
+        async fetchAllProducts() {
             try {
-                await this.$store.dispatch('products/fetchNonHomeProducts');
+                this.setLoading(true);
+                await this.$store.dispatch('products/fetchAllProducts');
             } catch (error) {
                 console.error("Error fetching products:", error);
             } finally {

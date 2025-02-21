@@ -2,6 +2,69 @@
     <v-card flat tile v-if="product">
         <v-card-text>
             <v-row>
+                <v-col cols="6">
+                    <span class="text-uppercase grey--text">{{ categoryName }}</span>
+                    <h1 class="text-h4 font-weight-bold mb-6">{{ product.name }}</h1>
+                    
+                    <h2 class="text-h3 font-weight-bold mb-6" v-if="product.price">
+                        ${{ product.price }}
+                    </h2>
+
+                    <v-row class="mb-6">
+                        <v-col cols="auto" v-if="product.files?.manual">
+                            <v-btn
+                                color="primary"
+                                depressed
+                                rounded
+                                @click="downloadFile(product.files.manual)"
+                            >
+                                <v-icon left>mdi-download</v-icon>
+                                Descargar manual
+                            </v-btn>
+                        </v-col>
+                        <v-col cols="auto" v-if="product.files?.folleto">
+                            <v-btn
+                                color="primary"
+                                depressed
+                                rounded
+                                @click="downloadFile(product.files.folleto)"
+                            >
+                                <v-icon left>mdi-download</v-icon>
+                                Descargar folleto
+                            </v-btn>
+                        </v-col>
+                    </v-row>
+
+                    <div class="text-body-1 mb-6" v-html="product.description"></div>
+
+                    <h3 class="text-h5 font-weight-bold mb-4" v-if="product.details">Características principales</h3>
+                    <div v-html="product.details"></div>
+
+                    <v-row class="mt-6">
+                        <v-col cols="auto">
+                            <v-btn
+                                color="primary"
+                                outlined
+                                rounded 
+                                href="https://wa.me/tunumero"
+                                target="_blank"
+                            >
+                                Consultar por Whatsapp
+                            </v-btn>
+                        </v-col>
+                        <v-col cols="auto">
+                            <v-btn
+                                color="primary"
+                                outlined
+                                rounded
+                                @click="consultarPorMail"
+                            >
+                                Consultar por Mail
+                            </v-btn>
+                        </v-col>
+                    </v-row>
+                </v-col>
+
                 <v-col cols="12" md="6">
                     <v-carousel hide-delimiters :height="carouselHeight" v-model="imageGallery" :continuous="true"
                         :show-arrows="$vuetify.breakpoint.xs">
@@ -28,26 +91,6 @@
                         </v-slide-item>
                     </v-slide-group>
                 </v-col>
-                <v-col cols="12" md="6">
-                    <h3 class="py-3 semi">{{ product.name }}</h3>
-                    <v-divider></v-divider>
-                    <h4 v-if="product.price" class="py-3">${{ product.price }}</h4>
-                    <v-divider></v-divider>
-                    <div class="body-2 pa-4" v-html="product.description"></div>
-                    <v-divider></v-divider>
-                    <v-row justify="center" class="py-4">
-                        <v-col cols="5">
-                            <v-btn icon @click="decreaseQuantity()" small class="primary white--text mr-1">-</v-btn>
-                            {{ quantity }}
-                            <v-btn icon @click="increaseQuantity()" small class="primary white--text ml-1">+</v-btn>
-                        </v-col>
-                        <v-col cols="4" class="text-center">
-                            <v-btn color="primary" depressed rounded @click="addProduct">Agregar</v-btn>
-                        </v-col>
-                    </v-row>
-                    <v-divider></v-divider>
-                    <div class="body-2 pa-4" v-html="product.details"></div>
-                </v-col>
             </v-row>
         </v-card-text>
     </v-card>
@@ -59,6 +102,10 @@ export default {
     props: {
         product: {
             type: Object,
+        },
+        showAddToCart: {
+            type: Boolean,
+            default: false
         }
     },
     data() {
@@ -78,6 +125,17 @@ export default {
         },
         decreaseQuantity(index) {
             this.quantity--
+        },
+        downloadFile(url) {
+            window.open(url, '_blank');
+        },
+        consultarPorMail() {
+            window.location.href = `mailto:tuemail@ejemplo.com?subject=Consulta sobre ${this.product.name}`;
+        }
+    },
+    computed: {
+        categoryName() {
+            return 'AGUA CALIENTE SANITARIA';
         }
     }
 }
