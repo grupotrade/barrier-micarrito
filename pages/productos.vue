@@ -14,7 +14,8 @@
             <div v-for="mainCategory in mainCategories" :key="mainCategory.id">
                 <v-btn 
                     block 
-                    outlined 
+                    :outlined="selectedCategory !== mainCategory.id"
+                    :depressed="selectedCategory === mainCategory.id"
                     color="primary" 
                     class="rounded-md btn-category"
                     @click="handleCategoryClick(mainCategory)"
@@ -30,7 +31,8 @@
                         v-for="subCategory in getSubcategories(mainCategory.id)" 
                         :key="subCategory.id"
                         block 
-                        outlined 
+                        :outlined="selectedCategory !== subCategory.id"
+                        :depressed="selectedCategory === subCategory.id"
                         color="secondary" 
                         class="rounded-md btn-subcategory"
                         @click="selectedCategory = subCategory.id"

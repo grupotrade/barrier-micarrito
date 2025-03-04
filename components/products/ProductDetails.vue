@@ -35,7 +35,7 @@
                         </v-col>
                     </v-row>
 
-                    <div class="text-body-1 mb-6" v-html="product.description"></div>
+                    <div class="text-body-1 mb-6">{{ product.description }}</div>
 
                     <h3 class="text-h5 font-weight-bold mb-4" v-if="product.details">Características principales</h3>
                     <div v-html="product.details"></div>

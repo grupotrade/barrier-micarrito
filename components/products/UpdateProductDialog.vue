@@ -33,8 +33,8 @@
                                         <v-col><v-text-field dense outlined class="body-1" background-color="foreground" required
                                     :rules="rulesGlobal.required" v-model="productEditable.name" label="Nombre"
                                     color="secondary"></v-text-field></v-col>
-                                        <v-col>   <v-text-field dense outlined class="body-1" background-color="foreground" required
-                                    :rules="rulesGlobal.required" v-model="productEditable.price" label="Precio"
+                                        <v-col>   <v-text-field dense outlined class="body-1" background-color="foreground" 
+                                    v-model="productEditable.price" label="Precio"
                                     color="secondary"></v-text-field></v-col>
                                     </v-row>                               
                                  

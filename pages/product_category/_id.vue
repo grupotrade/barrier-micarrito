@@ -1,8 +1,12 @@
 <template>
-<v-container class="pt-lg-16 px-lg-16">
+<v-container class="container-inner pt-16">
+    <v-sheet class="container-banner">
+            <BannersListBanners position="productos-header" />
+        </v-sheet>
     <v-row>
         <v-col cols="12">
-            <h3>{{ getCategoryName(category)}}</h3>
+            <h4 class="semi">{{ getCategoryName(category)}}</h4>
+            <v-divider class="line-title primary mb-4"></v-divider>
             <products-list :category="category" />
         </v-col>
     </v-row>

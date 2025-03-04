@@ -3,11 +3,21 @@
         <v-sheet class="container-banner">
             <BannersListBanners position="productos-header" />
         </v-sheet>
-        <v-container fluid class="container-inner mt-12">
-
+        <v-container fluid class="container-inner mt-12" v-if="product">
+           
+            <div>Productos | 
+                <nuxt-link 
+                    v-if="categoryInfo" 
+                    :to="`/product_category/${categoryInfo.id}`" 
+                    class="text-decoration-none"
+                >
+                    {{ categoryInfo.name }}
+                </nuxt-link>
+            </div>
             <v-card flat tile :loading="product == null">
                 <ProductsProductDetails :product="product" showAddToCart="false" @viewProduct="viewProduct" />
             </v-card>
+
 
     </v-container>
     </v-sheet>
@@ -26,7 +36,11 @@ export default {
     computed: {
         ...mapGetters({
             categories: "categories/getProductCategories",
-        })
+        }),
+        categoryInfo() {
+            if (!this.product || !this.product.category || !this.categories) return null;
+            return this.categories.find(cat => cat.id === this.product.category);
+        }
     },
     mounted() {
         this.getProduct()
