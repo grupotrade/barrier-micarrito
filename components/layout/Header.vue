@@ -7,7 +7,7 @@
             <v-list class="transparent">
                 <v-list-item @click="navigateTo('/')">Home</v-list-item>
                 <v-list-item @click="navigateTo('/servicios')">Servicios</v-list-item>
-                <!-- <v-list-item @click="navigateTo('/productos')">Productos</v-list-item> -->
+                <v-list-item @click="navigateTo('/productos')">Productos</v-list-item> 
                 <v-list-item @click="navigateTo('/nosotros')">Nosotros</v-list-item> 
             </v-list>
         </v-navigation-drawer>
@@ -29,7 +29,7 @@
                     <v-col cols="12" md="8" class="d-flex justify-end align-center">
                         <v-btn text class="mx-2" color="secondary_text" @click="navigateTo('/')">Home</v-btn>
             <v-btn text class="mx-2" color="secondary_text" @click="navigateTo('/servicios')">Servicios</v-btn>
-                        <!-- <v-btn text class="mx-2" color="secondary_text" @click="navigateTo('/productos')">Productos</v-btn> -->
+                        <v-btn text class="mx-2" color="secondary_text" @click="navigateTo('/productos')">Productos</v-btn>
                         <v-btn text class="mx-2" color="secondary_text" @click="navigateTo('/nosotros')">Nosotros</v-btn> 
                     </v-col>
                 </v-row>

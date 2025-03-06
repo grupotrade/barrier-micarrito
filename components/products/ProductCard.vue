@@ -1,5 +1,5 @@
 <template>
-    <v-card  flat tile class="mx-1 fill-height d-flex flex-column background" v-if="product" @click="$emit('viewDetails')">
+    <v-card tile class="mx-1 fill-height d-flex flex-column background product-card" v-if="product" @click="$emit('viewDetails')">
         <v-img :src="product.imagePrincipal" height="350px" cover v-if="product.imagePrincipal"></v-img>
         <v-img :src="product.images[0]" height="350px" cover v-else></v-img>
         <vue-easy-lightbox escDisabled moveDisabled :visible="visible" :imgs="imgs" :index="index"
@@ -82,3 +82,22 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+.v-sheet.v-card.product-card, .v-sheet.v-card .v-card__text {
+    transition: all 0.3s ease;
+    box-shadow: 0 0 0 0 transparent !important;
+
+}
+
+.v-sheet.v-card.product-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.1) !important;
+}
+
+.product-card:hover .v-card__text {
+    transform: scale(0.95);
+}
+
+</style>
+

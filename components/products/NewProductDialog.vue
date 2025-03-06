@@ -37,10 +37,11 @@
                                             v-model="product.price" label="Precio"
                                             color="secondary"></v-text-field></v-col>
                                 </v-row>
-                                <v-textarea dense outlined class="body-1" background-color="foreground" required
-                                    :rules="rulesGlobal.required" v-model="product.description" label="Descripción"
-                                    color="secondary"></v-textarea>
-                                <p>Detalles</p>
+                                <p>Descripción</p>
+                                <client-only>
+                                    <VueEditor v-model="product.description" :editor-toolbar="customToolbar" />
+                                </client-only>
+                                <p class="mt-4">Detalles</p>
                                 <client-only>
                                     <VueEditor v-model="product.details" :editor-toolbar="customToolbar" />
                                 </client-only>

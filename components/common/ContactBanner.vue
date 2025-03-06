@@ -18,7 +18,7 @@
                 </v-col>
                 <v-col>
                     <p class="mb-2"><v-icon color="white" >mdi-email</v-icon></p>
-                    <v-btn text color="white" class="mb-2" href="mailto:info@barrierclima.com.ar">
+                    <v-btn text color="white" class="mb-2" @click="contactDialog = true">
                         <span class="text-lowercase">info@barrierclima.com.ar</span>
                     </v-btn>
                 </v-col>
@@ -29,5 +29,23 @@
                     </v-btn>
                 </v-col>
             </v-row>
+            <v-dialog v-model="contactDialog" max-width="500">
+            <v-card>
+                <v-card-title>Contactenos</v-card-title>
+                <v-card-text>
+                    <ContactForm :product="product" />
+                </v-card-text>
+            </v-card>
+        </v-dialog>
         </v-container>
 </template>
+
+<script>
+export default {
+    data() {
+        return {
+            contactDialog: false
+        }
+    },
+}
+</script>

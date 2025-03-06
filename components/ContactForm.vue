@@ -7,11 +7,13 @@
         <h5 v-if="product">Consultando sobre el producto {{ product.name }}</h5>
         <v-textarea label="Mensaje" v-model="contact.message" required
             :rules="rulesGlobal.required"></v-textarea>
-        <v-btn color="primary" rounded size="large" :outlined="!isHovered"
+        <div class="d-flex justify-end">
+            <v-btn color="primary" rounded size="large" :outlined="!isHovered" class="mt-4 px-16"
                                 :depressed="isHovered"
                                 @mouseover="isHovered = true"
-                                @mouseleave="isHovered = false" class="px-16" :block="$vuetify.breakpoint.smAndDown"
+                                @mouseleave="isHovered = false" :block="$vuetify.breakpoint.smAndDown"
             :disabled="!valid" @click="sendContact($event)">Enviar</v-btn>
+        </div>
         <v-snackbar :timeout="4000" color="primary" rounded="pill" v-model="contactThanks" class="mt-n16">
             Gracias por su mensaje! le contestaremos a la brevedad.
         </v-snackbar>
