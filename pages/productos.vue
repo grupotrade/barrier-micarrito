@@ -11,36 +11,10 @@
             <h4 class="semi">Categorías</h4>
             <v-divider class="line-title primary mb-4"></v-divider>
             
-            <div v-for="mainCategory in mainCategories" :key="mainCategory.id">
-                <v-btn 
-                    block 
-                    :outlined="selectedCategory !== mainCategory.id"
-                    :depressed="selectedCategory === mainCategory.id"
-                    color="primary" 
-                    class="rounded-md btn-category"
-                    @click="handleCategoryClick(mainCategory)"
-                >
-                    {{ mainCategory.name }}
-                    <v-icon class="ml-auto" v-if="hasSubcategories(mainCategory.id)">
-                        {{ expandedCategories[mainCategory.id] ? 'mdi-chevron-up' : 'mdi-chevron-down' }}
-                    </v-icon>
-                </v-btn>
-                
-                <div v-if="expandedCategories[mainCategory.id]" class="subcategories-container">
-                    <v-btn 
-                        v-for="subCategory in getSubcategories(mainCategory.id)" 
-                        :key="subCategory.id"
-                        block 
-                        :outlined="selectedCategory !== subCategory.id"
-                        :depressed="selectedCategory === subCategory.id"
-                        color="secondary" 
-                        class="rounded-md btn-subcategory"
-                        @click="selectedCategory = subCategory.id"
-                    >
-                        {{ subCategory.name }}
-                    </v-btn>
-                </div>
-            </div>
+            <products-categories-menu @categorySelected="handleCategoryClick" />
+            <h4 class="semi mt-4">Buscador</h4>
+            <v-divider class="line-title primary mb-4"></v-divider>
+           <products-autocomplete />
         </v-col>
         <v-col cols="12" md="9">
             <h4 class="semi" v-if="selectedCategory">{{ getCategoryName(selectedCategory)}}</h4>
@@ -52,8 +26,6 @@
             />
         </v-col>
     </v-row>
-
-    <!-- <h3 class="mt-10 mb-6" v-if="posts">Más publicaciones</h3> -->
 </v-container>
 </v-sheet>
 </template>
@@ -67,7 +39,7 @@ export default {
         return {
             expandedCategories: {},
             selectedCategory: null,
-            loading: false
+            loading: false,
         }
     },
     computed: {
@@ -108,27 +80,8 @@ export default {
             const category = this.categories.find(c => c.id === categoryId);
             return category ? category.name : '';
         },
-        toggleCategory(categoryId) {
-            this.$set(this.expandedCategories, categoryId, !this.expandedCategories[categoryId]);
-        },
-        getSubcategories(parentId) {
-            return this.categories
-                .filter(category => 
-                    !category.isMain && category.category && category.category.id === parentId
-                )
-                .sort((a, b) => a.name.localeCompare(b.name));
-        },
-        hasSubcategories(parentId) {
-            return this.categories.some(category => 
-                !category.isMain && category.category && category.category.id === parentId
-            );
-        },
         handleCategoryClick(category) {
-            if (this.hasSubcategories(category.id)) {
-                this.toggleCategory(category.id);
-            } else {
-                this.selectedCategory = category.id;
-            }
+            this.selectedCategory = category.id;
         }
     }   
 }

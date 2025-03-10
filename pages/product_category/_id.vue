@@ -1,13 +1,26 @@
 <template>
 <v-container class="container-inner pt-16">
     <v-sheet class="container-banner">
-            <BannersListBanners position="productos-header" />
-        </v-sheet>
+        <BannersListBanners position="productos-header" />
+    </v-sheet>
     <v-row>
-        <v-col cols="12">
+        <v-col cols="12" md="3">
+            <h4 class="semi">Categorías</h4>
+            <v-divider class="line-title primary mb-4"></v-divider>
+            
+            <products-categories-menu 
+                :initial-category="category"
+                @categorySelected="handleCategoryClick" 
+            />
+           
+        </v-col>
+        <v-col cols="12" md="9">
             <h4 class="semi">{{ getCategoryName(category)}}</h4>
             <v-divider class="line-title primary mb-4"></v-divider>
-            <products-list :category="category" />
+            <products-list 
+                ref="productsList"
+                :category="category"
+            />
         </v-col>
     </v-row>
 
@@ -22,6 +35,7 @@ import {
 export default {
     data() {
         return {
+            selectedCategory: null
         }
     },
     computed: {
@@ -40,7 +54,22 @@ export default {
         getCategoryName(categoryId) {
             const category = this.categories.find(c => c.id === categoryId);
             return category ? category.name : '';
+        },
+        handleCategoryClick(category) {
+            if (category && category.id !== this.category) {
+                this.$router.push(`/product_category/${category.id}`);
+            }
         }
-    }   
+    },
+    watch: {
+        category: {
+            immediate: true,
+            handler(newCategoryId) {
+                if (this.$refs.productsList && newCategoryId) {
+                    this.$refs.productsList.fetchProductsByCategory(newCategoryId);
+                }
+            }
+        }
+    }
 }
 </script>

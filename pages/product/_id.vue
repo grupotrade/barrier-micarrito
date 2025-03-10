@@ -5,14 +5,24 @@
         </v-sheet>
         <v-container fluid class="container-inner mt-12" v-if="product">
            
-            <div>Productos | 
-                <nuxt-link 
+            <div> <v-btn 
+                text
+                color="primary"
+                    v-if="categoryInfo" 
+                    :to="`/productos`" 
+                    class="text-decoration-none"
+                >
+                    Productos
+                </v-btn> | 
+                <v-btn 
+                    text
+                    color="primary"
                     v-if="categoryInfo" 
                     :to="`/product_category/${categoryInfo.id}`" 
                     class="text-decoration-none"
                 >
                     {{ categoryInfo.name }}
-                </nuxt-link>
+                </v-btn>
             </div>
             <v-card flat tile :loading="product == null">
                 <ProductsProductDetails :product="product" showAddToCart="false" @viewProduct="viewProduct" />

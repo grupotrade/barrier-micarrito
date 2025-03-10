@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-navigation-drawer v-model="menuMobile" dark color="primary_darken" clipped app disable-resize-watcher>
+        <v-navigation-drawer v-model="menuMobile" dark color="primary_darken pt-12" clipped app disable-resize-watcher>
             <a  @click="$router.push('/')">
                 <CommonLogoH dark class="ma-6" width="190" />
             </a>

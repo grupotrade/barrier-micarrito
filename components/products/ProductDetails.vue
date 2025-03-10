@@ -2,7 +2,7 @@
     <v-card flat tile v-if="product">
         <v-card-text>
             <v-row>
-                <v-col cols="6">
+                <v-col cols="12" md="6">
                     <span class="text-uppercase grey--text">{{ categoryName }}</span>
                     <h1 class="text-h4 font-weight-bold mb-6">{{ product.name }}</h1>
                     
@@ -10,7 +10,7 @@
                         ${{ product.price }}
                     </h2>
 
-                    <v-row class="mb-6">
+                    <v-row class="mb-6" dense>
                         <v-col cols="auto" v-if="product.files?.manual">
                             <v-btn
                                 color="primary"
@@ -40,7 +40,7 @@
                     <h3 class="text-h5 font-weight-bold mb-4" v-if="product.details">Características principales</h3>
                     <div v-html="product.details"></div>
 
-                    <v-row class="mt-6">
+                    <v-row class="mt-6" dense>
                         <v-col cols="auto">
                             <v-btn
                                 color="primary"
