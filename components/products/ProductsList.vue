@@ -8,11 +8,12 @@
                 </v-col>
             </v-row>
             <v-row dense v-if="!home">
-                <v-col cols="12" :lg="columns" class="mb-2" v-for="item in products" :key="item.id">
+                <v-col cols="12" :lg="columns" class="mb-2" v-for="item in filteredProducts" :key="item.id">
                     <ProductsProductCard :product="item" :category="getCategoryName(item.category)"
                         @viewDetails="navigateProduct(item)" :showAdd="false" />
                 </v-col>
             </v-row>
+            <h5 class="semi mt-4 pa-8" v-if="!filteredProducts.length">No hay productos con el filtro seleccionado, pruebe con otra opción.</h5>
         </v-skeleton-loader>
     </v-container>
 </template>
@@ -41,7 +42,8 @@ export default {
             productSelected: null,
             loading: false,
             viewProductDialog: false,
-            productSelected: null
+            productSelected: null,
+            filteredProducts: []
         }
     },
     computed: {
@@ -49,6 +51,7 @@ export default {
             products: "products/getProducts",
             productsHome: "products/getHomeProducts",
             categories: "categories/getProductCategories",
+            brands: "brands/getBrands"
         }),
         user() {
             return this.$store.state.authUser;
@@ -72,6 +75,7 @@ export default {
             try {
                 this.setLoading(true);
                 await this.$store.dispatch('products/fetchProductsByCategory', id);
+                this.filteredProducts = [...this.products];
             } catch (error) {
                 console.error("Error fetching products:", error);
             } finally {
@@ -82,6 +86,7 @@ export default {
             try {
                 this.setLoading(true);
                 await this.$store.dispatch('products/fetchHomeProducts');
+                this.filteredProducts = [...this.productsHome];
             } catch (error) {
                 console.error("Error fetching products:", error);
             } finally {
@@ -92,6 +97,7 @@ export default {
             try {
                 this.setLoading(true);
                 await this.$store.dispatch('products/fetchAllProducts');
+                this.filteredProducts = [...this.products];
             } catch (error) {
                 console.error("Error fetching products:", error);
             } finally {
@@ -116,6 +122,13 @@ export default {
         closeProductDialog() {
             this.productDialog = false
             this.productSelected = {}
+        },
+        filterByBrand(brandId) {
+            if (!brandId) {
+                this.filteredProducts = [...this.products];
+            } else {
+                this.filteredProducts = this.products.filter(product => product.brand === brandId);
+            }
         }
     }
 }

@@ -12,6 +12,9 @@
             <v-divider class="line-title primary mb-4"></v-divider>
             
             <products-categories-menu @categorySelected="handleCategoryClick" />
+            <h4 class="semi mt-4">Marcas</h4>
+            <v-divider class="line-title primary mb-4"></v-divider>
+            <products-brands-menu @brandSelected="handleBrandClick" />
             <h4 class="semi mt-4">Buscador</h4>
             <v-divider class="line-title primary mb-4"></v-divider>
            <products-autocomplete />
@@ -39,12 +42,14 @@ export default {
         return {
             expandedCategories: {},
             selectedCategory: null,
+            selectedBrand: null,
             loading: false,
         }
     },
     computed: {
         ...mapGetters({
             categories: "categories/getProductCategories",
+            brands: "brands/getBrands"
         }),
         category() {
             return  this.$route.params.id
@@ -73,6 +78,14 @@ export default {
                     }
                 }
             }
+        },
+        selectedBrand: {
+            immediate: true,
+            handler(newBrandId) {
+                if (this.$refs.productsList) {
+                    this.$refs.productsList.filterByBrand(newBrandId);
+                }
+            }
         }
     },
     methods: {
@@ -82,6 +95,9 @@ export default {
         },
         handleCategoryClick(category) {
             this.selectedCategory = category.id;
+        },
+        handleBrandClick(brand) {
+            this.selectedBrand = brand ? brand.id : null;
         }
     }   
 }

@@ -29,16 +29,22 @@
                                 <v-autocomplete label="Categoría" :items="categories" item-text="name" item-value="id"
                                     v-model="productEditable.category" dense outlined class="body-1"
                                     background-color="foreground"></v-autocomplete>
-                                    <v-row dense>
-                                        <v-col><v-text-field dense outlined class="body-1" background-color="foreground" required
+                            </v-col>
+                            <v-col>
+                                <v-autocomplete label="Marca" :items="brands" item-text="name" item-value="id"
+                                    v-model="productEditable.brand" dense outlined class="body-1"
+                                    background-color="foreground"></v-autocomplete>
+                                </v-col>
+                        </v-row>
+                                <v-row dense>
+                                    <v-col cols="8"><v-text-field dense outlined class="body-1" background-color="foreground" required
                                     :rules="rulesGlobal.required" v-model="productEditable.name" label="Nombre"
                                     color="secondary"></v-text-field></v-col>
-                                        <v-col>   <v-text-field dense outlined class="body-1" background-color="foreground" 
+                                    <v-col>   <v-text-field dense outlined class="body-1" background-color="foreground" 
                                     v-model="productEditable.price" label="Precio"
                                     color="secondary"></v-text-field></v-col>
-                                    </v-row>                               
-                                 
-                                    <p>Descripción</p>
+                                </v-row>                               
+                                <p>Descripción</p>
                                 <client-only>
                                     <VueEditor v-model="productEditable.description" :editor-toolbar="customToolbar"
                                         />
@@ -266,7 +272,8 @@ export default {
             }
         },
         ...mapGetters({
-            categories: "categories/getProductCategories"
+            categories: "categories/getProductCategories",
+            brands: "brands/getBrands"
         }),
         filteredCategories() {
             return this.categories.filter(item => !item.isMain);
@@ -295,6 +302,9 @@ export default {
                 this.relations[key] = this.relationProducts[index] || null;
             });
         }
+    },
+    mounted() {
+        this.listBrands()
     },
     methods: {
         minimizeProductDialog() {
@@ -330,6 +340,7 @@ export default {
                 relations: this.relationProducts,
                 name: this.productEditable.name,
                 category: this.productEditable.category,
+                brand: this.productEditable.brand,
                 description: this.productEditable.description,
                 details: this.productEditable.details,
                 price: this.productEditable.price,
@@ -470,6 +481,9 @@ export default {
             this.productEditable.imagePrincipal = null
             this.imagePrincipal = null
             this.filePrincipal = null
+        },
+        listBrands() {
+            this.$store.dispatch('brands/fetchBrands')
         },
     }
 }

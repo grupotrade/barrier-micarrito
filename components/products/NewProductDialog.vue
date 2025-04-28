@@ -29,8 +29,16 @@
                                 <v-autocomplete label="Categoría" :items="categories" item-text="name" item-value="id"
                                     v-model="product.category" dense outlined class="body-1"
                                     background-color="foreground"></v-autocomplete>
+                                </v-col>
+                                <v-col>
+                                <v-autocomplete label="Marca" :items="brands" item-text="name" item-value="id"
+                                    v-model="product.brand" dense outlined class="body-1"
+                                    background-color="foreground"></v-autocomplete>
+                                </v-col>
+                        </v-row>
                                 <v-row dense>
-                                    <v-col><v-text-field dense outlined class="body-1" background-color="foreground"
+                                    <v-col cols="8">
+                                        <v-text-field dense outlined class="body-1" background-color="foreground"
                                             required :rules="rulesGlobal.required" v-model="product.name" label="Nombre"
                                             color="secondary"></v-text-field></v-col>
                                     <v-col> <v-text-field dense outlined class="body-1" background-color="foreground"
@@ -190,7 +198,8 @@ export default {
             }
         },
         ...mapGetters({
-            categories: "categories/getProductCategories"
+            categories: "categories/getProductCategories",
+            brands: "brands/getBrands"
         })
 
     },
@@ -210,6 +219,7 @@ export default {
                 price: null,
                 details: '',
                 category: null,
+                brand: null,
                 description: '',
                 images: [],
                 imagePrincipal: null,
@@ -296,6 +306,7 @@ export default {
                 price: this.product.price,
                 details: this.product.details,
                 category: this.product.category,
+                brand: this.product.brand,
                 description: this.product.description,
                 images: this.product.images,
                 imagePrincipal: this.product.imagePrincipal,
@@ -313,6 +324,7 @@ export default {
                 name: '',
                 price: '',
                 category: null,
+                brand: null,
                 description: '',
                 details: '',
                 images: [],
@@ -443,7 +455,13 @@ export default {
         },
         removeImagePrincipal() {
             this.imagePrincipal = null
+        },
+        listBrands() {
+            this.$store.dispatch('brands/fetchBrands')
         }
+    },
+    mounted() {
+        this.listBrands()
     }
 }
 </script>

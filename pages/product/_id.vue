@@ -46,15 +46,21 @@ export default {
     computed: {
         ...mapGetters({
             categories: "categories/getProductCategories",
+            brands: "brands/getBrands"
         }),
         categoryInfo() {
             if (!this.product || !this.product.category || !this.categories) return null;
             return this.categories.find(cat => cat.id === this.product.category);
+        },
+        brandInfo() {
+            if (!this.product || !this.product.brand || !this.brands) return null;
+            return this.brands.find(brand => brand.id === this.product.brand);
         }
     },
     mounted() {
         this.getProduct()
         this.fetchCategories()
+        this.fetchBrands()
     },
     methods: {
         async getProduct() {
@@ -81,6 +87,9 @@ export default {
         },
         fetchCategories() {
             this.$store.dispatch('categories/fetchAllProductCategories')
+        },
+        fetchBrands() {
+            this.$store.dispatch('brands/fetchBrands')
         },
         viewProduct(item) {
             this.$router.push(item)

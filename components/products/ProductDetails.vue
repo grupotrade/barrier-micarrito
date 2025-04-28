@@ -6,6 +6,15 @@
                     <span class="text-uppercase grey--text">{{ categoryName }}</span>
                     <h1 class="text-h4 font-weight-bold mb-6">{{ product.name }}</h1>
                     
+                    <div v-if="brandInfo" class="mb-6">
+                        <v-img 
+                            :src="$config.storage+'brands%2F' + brandInfo.image + '?alt=media'"
+                            max-width="150" 
+                            class="mb-2"
+                            v-if="brandInfo.image"
+                        ></v-img>
+                    </div>
+
                     <h2 class="text-h3 font-weight-bold mb-6" v-if="product.price">
                         ${{ product.price }}
                     </h2>
@@ -144,6 +153,10 @@ export default {
     computed: {
         categoryName() {
             return 'AGUA CALIENTE SANITARIA';
+        },
+        brandInfo() {
+            if (!this.product || !this.product.brand || !this.$store.getters['brands/getBrands']) return null;
+            return this.$store.getters['brands/getBrands'].find(brand => brand.id === this.product.brand);
         }
     }
 }
