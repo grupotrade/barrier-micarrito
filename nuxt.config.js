@@ -1,17 +1,12 @@
 import i18n from './plugins/i18n'
 
 export default {
-  // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
-  //ssr: false,
-
-  // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
   
   generate: {
     fallback: true
   },
 
-  // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     titleTemplate: '%s',
     title: 'Barrier Clima - El confort que tu hogar necesita.',
