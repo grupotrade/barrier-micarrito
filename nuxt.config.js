@@ -61,7 +61,8 @@ export default {
     'vue-scrollto/nuxt',
     'nuxt-material-design-icons-iconfont',
     '@nuxtjs/firebase',
-    'vue2-editor/nuxt'
+    'vue2-editor/nuxt',
+    '@nuxtjs/google-gtag'
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -139,6 +140,22 @@ export default {
   ],
   env: {
     GOOGLE_MAPS_API_KEY: process.env.GOOGLE_MAPS_API_KEY
+  },
+  // Google Gtag configuration
+  'google-gtag': {
+    id: 'AW-16551242288',
+    config: {
+      send_page_view: true,
+      groups: 'default'
+    },
+    debug: process.env.NODE_ENV !== 'production', // Solo debug en desarrollo
+    disableAutoPageTrack: false,
+    additionalAccounts: [{
+      id: 'AW-16551242288',
+      config: {
+        send_page_view: true
+      }
+    }]
   },
     // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
