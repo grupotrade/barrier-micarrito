@@ -59,17 +59,27 @@ export const actions = {
             })
     },
     async fetchProductsByCategory({commit}, payload) {
-            let ref = this.$fire.firestore.collection('products').where('deletedAt', '==', null).where('status', '==', 1).where('category', '==', payload).orderBy("date", "asc")
-                ref.get().then(function (querySnapshot) {
-                    const result = []
-                    querySnapshot.forEach(function (doc) {
-                        let data
-                        data = doc.data()
-                        data.id = doc.id
-                        result.push(data)
-                    })
-                    commit('setProducts', result) 
-                })
+        try {
+            let ref = this.$fire.firestore.collection('products')
+                .where('deletedAt', '==', null)
+                .where('status', '==', 1)
+                .where('category', '==', payload)
+                .orderBy("date", "asc");
+            
+            const querySnapshot = await ref.get();
+            const result = [];
+            querySnapshot.forEach(function (doc) {
+                let data = doc.data();
+                data.id = doc.id;
+                result.push(data);
+            });
+            commit('setProducts', result);
+            return result;
+        } catch (error) {
+            console.error("Error fetching products by category:", error);
+            commit('setProducts', []);
+            return [];
+        }
     },
     async fetchHomeProducts({commit}) {
         let ref = this.$fire.firestore.collection('products').where('onHome', '==', true).where('deletedAt', '==', null).orderBy("date", "asc")

@@ -95,6 +95,11 @@ export default {
         },
         handleCategoryClick(category) {
             this.selectedCategory = category.id;
+            this.$nextTick(() => {
+                if (this.$refs.productsList) {
+                    this.$refs.productsList.fetchProductsByCategory(category.id);
+                }
+            });
         },
         handleBrandClick(brand) {
             this.selectedBrand = brand ? brand.id : null;

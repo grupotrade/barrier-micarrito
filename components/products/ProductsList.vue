@@ -68,7 +68,18 @@ export default {
         else {
             this.fetchAllProducts()
         }
-
+    },
+    watch: {
+        category: {
+            immediate: true,
+            handler(newCategory) {
+                if (newCategory) {
+                    this.fetchProductsByCategory(newCategory);
+                } else {
+                    this.fetchAllProducts();
+                }
+            }
+        }
     },
     methods: {
         async fetchProductsByCategory(id) {

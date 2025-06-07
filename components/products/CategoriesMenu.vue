@@ -102,10 +102,11 @@ export default {
         handleCategoryClick(category) {
             if (this.hasSubcategories(category.id)) {
                 this.toggleCategory(category.id);
-            } else {
-                this.selectedCategory = category.id;
-                this.$emit('categorySelected', category);
             }
+            this.selectedCategory = category.id;
+            this.$nextTick(() => {
+                this.$emit('categorySelected', category);
+            });
         }
     }   
 }
