@@ -51,8 +51,8 @@ export default {
             categories: "categories/getProductCategories",
             brands: "brands/getBrands"
         }),
-        category() {
-            return  this.$route.params.id
+        categoryFromQuery() {
+            return this.$route.query.categoryId || null;
         },
         mainCategories() {
             return this.categories
@@ -62,19 +62,32 @@ export default {
     },
     mounted() {
         this.$store.dispatch('categories/fetchAllProductCategories')
+        if (this.categoryFromQuery) {
+            this.selectedCategory = this.categoryFromQuery;
+        }
         if (this.$refs.productsList) {
             this.$refs.productsList.fetchAllProducts();
         }
     },
     watch: {
+        categoryFromQuery: {
+            immediate: true,
+            handler(newCategory) {
+                if (newCategory) {
+                    this.selectedCategory = newCategory;
+                }
+            }
+        },
         selectedCategory: {
             immediate: true,
             handler(newCategoryId) {
                 if (this.$refs.productsList) {
                     if (newCategoryId) {
                         this.$refs.productsList.fetchProductsByCategory(newCategoryId);
+                        this.updateUrlWithCategory(newCategoryId);
                     } else {
                         this.$refs.productsList.fetchAllProducts();
+                        this.updateUrlWithCategory(null);
                     }
                 }
             }
@@ -103,6 +116,20 @@ export default {
         },
         handleBrandClick(brand) {
             this.selectedBrand = brand ? brand.id : null;
+        },
+        updateUrlWithCategory(categoryId) {
+            const query = { ...this.$route.query };
+            if (categoryId) {
+                const category = this.categories.find(c => c.id === categoryId);
+                if (category) {
+                    query.cat = category.name.toLowerCase().replace(/\s+/g, '-');
+                    query.categoryId = categoryId;
+                }
+            } else {
+                delete query.cat;
+                delete query.categoryId;
+            }
+            this.$router.replace({ query });
         }
     }   
 }

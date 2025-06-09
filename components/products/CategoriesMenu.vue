@@ -56,11 +56,11 @@ export default {
             categories: "categories/getProductCategories",
         }),
         category() {
-            return  this.$route.params.id
+            return this.$route.params.id
         },
         mainCategories() {
             return this.categories
-                .filter(category => category.isMain)
+                .filter(category => category.isMain && category.active)
                 .sort((a, b) => a.name.localeCompare(b.name));
         },
     },
@@ -90,13 +90,19 @@ export default {
         getSubcategories(parentId) {
             return this.categories
                 .filter(category => 
-                    !category.isMain && category.category && category.category.id === parentId
+                    !category.isMain && 
+                    category.category && 
+                    category.category.id === parentId &&
+                    category.active
                 )
                 .sort((a, b) => a.name.localeCompare(b.name));
         },
         hasSubcategories(parentId) {
             return this.categories.some(category => 
-                !category.isMain && category.category && category.category.id === parentId
+                !category.isMain && 
+                category.category && 
+                category.category.id === parentId &&
+                category.active
             );
         },
         handleCategoryClick(category) {
