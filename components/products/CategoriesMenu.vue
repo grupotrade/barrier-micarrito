@@ -75,7 +75,10 @@ export default {
         initialCategory: {
             immediate: true,
             handler(newValue) {
-                this.selectedCategory = newValue;
+                if (newValue) {
+                    this.selectedCategory = newValue;
+                    this.expandedCategories[newValue] = true;
+                }
             }
         }
     },
@@ -110,9 +113,7 @@ export default {
                 this.toggleCategory(category.id);
             }
             this.selectedCategory = category.id;
-            this.$nextTick(() => {
-                this.$emit('categorySelected', category);
-            });
+            this.$emit('categorySelected', category);
         }
     }   
 }

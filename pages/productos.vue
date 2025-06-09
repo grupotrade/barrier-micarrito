@@ -11,7 +11,10 @@
             <h4 class="semi">Categorías</h4>
             <v-divider class="line-title primary mb-4"></v-divider>
             
-            <products-categories-menu @categorySelected="handleCategoryClick" />
+            <products-categories-menu 
+                :initial-category="selectedCategory"
+                @categorySelected="handleCategoryClick" 
+            />
             <h4 class="semi mt-4">Marcas</h4>
             <v-divider class="line-title primary mb-4"></v-divider>
             <products-brands-menu @brandSelected="handleBrandClick" />
@@ -43,41 +46,23 @@ export default {
             expandedCategories: {},
             selectedCategory: null,
             selectedBrand: null,
-            loading: false,
+            loading: false
         }
     },
     computed: {
         ...mapGetters({
             categories: "categories/getProductCategories",
             brands: "brands/getBrands"
-        }),
-        categoryFromQuery() {
-            return this.$route.query.categoryId || null;
-        },
-        mainCategories() {
-            return this.categories
-                .filter(category => category.isMain)
-                .sort((a, b) => a.name.localeCompare(b.name));
-        },
+        })
     },
     mounted() {
-        this.$store.dispatch('categories/fetchAllProductCategories')
-        if (this.$route.query.categoryId) {
-            this.selectedCategory = this.$route.query.categoryId;
-        }
-        if (this.$refs.productsList) {
-            this.$refs.productsList.fetchAllProducts();
+        this.$store.dispatch('categories/fetchAllProductCategories');
+        const categoryId = this.$route.query.categoryId;
+        if (categoryId) {
+            this.selectedCategory = categoryId;
         }
     },
     watch: {
-        '$route.query.categoryId': {
-            immediate: true,
-            handler(newCategoryId) {
-                if (newCategoryId) {
-                    this.selectedCategory = newCategoryId;
-                }
-            }
-        },
         selectedCategory: {
             immediate: true,
             handler(newCategoryId) {
@@ -106,33 +91,21 @@ export default {
         },
         handleCategoryClick(category) {
             this.selectedCategory = category.id;
-            this.$nextTick(() => {
-                if (this.$refs.productsList) {
-                    this.$refs.productsList.fetchProductsByCategory(category.id);
-                }
-                this.updateUrlWithCategory(category);
-            });
+            this.updateUrlWithCategory(category);
         },
         handleBrandClick(brand) {
             this.selectedBrand = brand ? brand.id : null;
         },
         updateUrlWithCategory(category) {
-            try {
-                const query = { ...this.$route.query };
-                if (category) {
-                    query.cat = category.name.toLowerCase().replace(/\s+/g, '-');
-                    query.categoryId = category.id;
-                } else {
-                    delete query.cat;
-                    delete query.categoryId;
-                }
-                this.$router.push({ 
-                    path: this.$route.path,
-                    query 
-                }, () => {}, () => {});
-            } catch (error) {
-                console.error('Error updating URL:', error);
+            const query = { ...this.$route.query };
+            if (category) {
+                query.cat = category.name.toLowerCase().replace(/\s+/g, '-');
+                query.categoryId = category.id;
+            } else {
+                delete query.cat;
+                delete query.categoryId;
             }
+            this.$router.replace({ query });
         }
     }   
 }
